@@ -8,6 +8,7 @@
   const dialog = $('detailsDialog');
   let workshops = [];
   let selected = new Set();
+  let sharedView = false;
 
   const palette = [
     ['#087f8f','#447d9a','#142e52'],
@@ -72,6 +73,7 @@
     const term = searchInput.value.trim().toLocaleLowerCase('he');
     const field = fieldFilter.value;
     return workshops.filter((w) =>
+      (!sharedView || selected.has(w.id)) &&
       (!field || w.field === field) &&
       (!term || [w.title, w.lesson, w.product, w.field].some((part) => part.toLocaleLowerCase('he').includes(term)))
     );
@@ -111,10 +113,11 @@
     const shown = shownWorkshops();
     grid.replaceChildren(...shown.map(renderCard));
     $('emptyState').hidden = shown.length !== 0;
-    $('resultCount').textContent = 'מוצגות ' + shown.length + ' מתוך ' + workshops.length;
+    $('resultCount').textContent = 'מוצגות ' + shown.length + ' מתוך ' + (sharedView ? selected.size : workshops.length);
     $('selectedCount').textContent = selectionLabel(selected.size);
     $('selectedCountTop').textContent = selectionLabel(selected.size);
     $('printButton').disabled = selected.size === 0;
+    $('shareButton').disabled = selected.size === 0;
     $('selectVisible').disabled = shown.length === 0;
     handleBrokenPhotos(grid);
   }
@@ -134,14 +137,16 @@
         '<div class="dialog-meta"><span>כיתות ג׳–ה׳</span><span>משך הסדנה: 60 דקות</span><span>תוצר אישי</span></div>' +
         '<section class="dialog-block"><h3>מה לומדים בסדנה?</h3><p>' + escapeHTML(w.lesson) + '</p></section>' +
         '<section class="dialog-block"><h3>מה התלמידים יוצרים?</h3><p>' + escapeHTML(w.product) + '</p></section>' +
-        '<div class="dialog-actions"><button id="toggleDialogSelection" type="button" class="button ' + (isSelected ? 'button-secondary' : 'button-primary') + '">' + (isSelected ? 'הסרה מהקטלוג' : 'הוספה לקטלוג') + '</button></div>' +
+        (sharedView ? '' : '<div class="dialog-actions"><button id="toggleDialogSelection" type="button" class="button ' + (isSelected ? 'button-secondary' : 'button-primary') + '">' + (isSelected ? 'הסרה מהקטלוג' : 'הוספה לקטלוג') + '</button></div>') +
       '</div>';
-    $('toggleDialogSelection').addEventListener('click', () => {
-      if (selected.has(w.id)) selected.delete(w.id);
-      else selected.add(w.id);
-      dialog.close();
-      render();
-    });
+    if (!sharedView) {
+      $('toggleDialogSelection').addEventListener('click', () => {
+        if (selected.has(w.id)) selected.delete(w.id);
+        else selected.add(w.id);
+        dialog.close();
+        render();
+      });
+    }
     dialog.querySelectorAll('img').forEach((img) => {
       img.addEventListener('error', () => useFallback(img, w));
     });
@@ -184,6 +189,78 @@
       });
     });
   }
+  function selectedIDs() {
+    return workshops.filter((w) => selected.has(w.id)).map((w) => w.id);
+  }
+  function shareURL() {
+    const url = new URL(window.location.href);
+    url.search = '';
+    url.hash = '';
+    url.searchParams.set('s', selectedIDs().join(','));
+    return url.toString();
+  }
+  function defaultWhatsAppIntro(count) {
+    const number = count === 1 ? 'סדנה אחת' : count + ' סדנאות';
+    return 'שלום,\n\nמצורף קטלוג דיגיטלי של סדנאות החלל של תעשיידע, המיועדות לתלמידי כיתות ג׳–ה׳.\n\nבקטלוג מוצגות ' + number + ' שנבחרו עבורכם. הסדנאות משלבות למידה מדעית, התנסות חווייתית ויצירת תוצר אישי. בקישור תוכלו להכיר את התוכן הלימודי ואת התוצר בכל סדנה.\n\nנשמח לסייע בבחירת הסדנאות המתאימות.\nצוות תעשיידע';
+  }
+  function fullWhatsAppMessage() {
+    const introduction = $('shareMessage').value.trim();
+    const linkLine = 'לצפייה בקטלוג הדיגיטלי:\n' + $('shareLink').value;
+    return introduction ? introduction + '\n\n' + linkLine : linkLine;
+  }
+  function refreshWhatsAppLink() {
+    $('sendWhatsApp').href = 'https://wa.me/?text=' + encodeURIComponent(fullWhatsAppMessage());
+  }
+  function openShareDialog() {
+    if (!selected.size || sharedView) return;
+    const url = shareURL();
+    $('shareLink').value = url;
+    $('shareMessage').value = defaultWhatsAppIntro(selected.size);
+    $('shareDescription').textContent = (selected.size === 1 ? 'נוצר קישור המציג סדנה אחת בלבד.' : 'נוצר קישור המציג ' + selected.size + ' סדנאות בלבד.') + ' אפשר לערוך את נוסח ההודעה לפני השליחה.';
+    $('previewShareLink').href = url;
+    $('shareFeedback').textContent = '';
+    refreshWhatsAppLink();
+    const shareDialog = $('shareDialog');
+    if (typeof shareDialog.showModal === 'function') shareDialog.showModal();
+    else shareDialog.setAttribute('open', '');
+  }
+  async function copyText(value, successMessage) {
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(value);
+      } else {
+        const input = document.createElement('textarea');
+        input.value = value;
+        input.setAttribute('readonly', '');
+        input.style.position = 'fixed';
+        input.style.left = '-9999px';
+        document.body.appendChild(input);
+        input.select();
+        const copied = document.execCommand('copy');
+        input.remove();
+        if (!copied) throw new Error('copy denied');
+      }
+      $('shareFeedback').textContent = successMessage;
+    } catch (_) {
+      $('shareFeedback').textContent = 'ההעתקה לא הצליחה. אפשר לסמן ולהעתיק את הטקסט ידנית.';
+    }
+  }
+  function activateRecipientView() {
+    const raw = new URLSearchParams(window.location.search).get('s');
+    // A malformed or empty link must not accidentally generate an empty catalog.
+    if (!raw || !/^\d{1,2}(,\d{1,2}){0,22}$/.test(raw)) return;
+    const available = new Set(workshops.map((w) => w.id));
+    const linkedIDs = new Set(raw.split(',').map(Number).filter((id) => available.has(id)));
+    if (linkedIDs.size === 0) return;
+    selected = linkedIDs;
+    sharedView = true;
+    document.body.classList.add('shared-view');
+    $('sharedBanner').hidden = false;
+    $('sharedBannerTitle').textContent = linkedIDs.size === 1 ? 'קטלוג דיגיטלי: סדנה אחת שנבחרה עבורכם' : 'קטלוג דיגיטלי: ' + linkedIDs.size + ' סדנאות שנבחרו עבורכם';
+    $('catalogTitle').textContent = 'הסדנאות שנבחרו עבורכם';
+    $('catalogDescription').textContent = 'עיינו בסדנאות ולחצו על כל כרטיס לקבלת פרטים מלאים על השיעור ועל התוצר.';
+    document.title = 'קטלוג סדנאות חלל נבחרות | תעשיידע';
+  }
   async function start() {
     try {
       const response = await fetch('./data.json', {cache:'no-cache'});
@@ -192,6 +269,7 @@
       if (!Array.isArray(data.workshops)) throw new Error('מבנה נתונים לא תקין');
       workshops = data.workshops;
       selected = new Set(workshops.map((w) => w.id));
+      activateRecipientView();
       $('workshopTotal').textContent = String(workshops.length);
       [...new Set(workshops.map((w) => w.field))].sort((a,b)=>a.localeCompare(b,'he'))
         .forEach((field) => fieldFilter.add(new Option(field, field)));
@@ -213,10 +291,23 @@
     shownWorkshops().forEach((w) => selected.add(w.id)); render();
   });
   $('clearSelection').addEventListener('click', () => { selected.clear(); render(); });
-  $('printButton').addEventListener('click', () => {
+  function printSelection() {
     if (!selected.size) return;
     buildPrint();
     window.print();
+  }
+  $('printButton').addEventListener('click', printSelection);
+  $('sharedPrintButton').addEventListener('click', printSelection);
+  $('shareButton').addEventListener('click', openShareDialog);
+  $('shareMessage').addEventListener('input', () => {
+    $('shareFeedback').textContent = '';
+    refreshWhatsAppLink();
+  });
+  $('copyShareLink').addEventListener('click', () => copyText($('shareLink').value, 'הקישור הדיגיטלי הועתק.'));
+  $('copyShareText').addEventListener('click', () => copyText(fullWhatsAppMessage(), 'ההודעה עם הקישור הועתקה.'));
+  $('closeShareDialog').addEventListener('click', () => $('shareDialog').close());
+  $('shareDialog').addEventListener('click', (event) => {
+    if (event.target === $('shareDialog')) $('shareDialog').close();
   });
   window.addEventListener('beforeprint', () => { if (workshops.length) buildPrint(); });
   $('closeDialog').addEventListener('click', () => dialog.close());

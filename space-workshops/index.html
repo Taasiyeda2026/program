@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b1831">
+  <meta name="description" content="23 סדנאות STEM בהשראת עולם החלל לתלמידי כיתות ג׳–ה׳. בחרו, סננו והפיקו קטלוג סדנאות מותאם.">
+  <link rel="canonical" href="https://taasiyeda.work/space-workshops/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./catalog.css">
+  <title>סדנאות חלל | תעשיידע</title>
+  <script src="./catalog.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../" aria-label="לעמוד הראשי של תעשיידע">
+        <img src="../pictures/logo.png" alt="" width="39" height="46">
+        <span><strong>תעשיידע</strong><small>לומדים לעשות שינוי</small></span>
+      </a>
+      <a class="home-link" href="../"><span aria-hidden="true">←</span> למרחב הקורסים</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="pageTitle">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="eyebrow-dot"></span> מעבדת הסקרנות של תעשיידע</p>
+          <h1 id="pageTitle">יוצאים לגלות.<br><em>חוזרים עם משהו שבנינו.</em></h1>
+          <p class="hero-intro">סדנאות חלל חווייתיות שמשלבות שאלה מדעית, התנסות פעילה ותוצר אישי שהתלמידים יוצרים במו ידיהם.</p>
+          <div class="hero-facts" aria-label="פרטי הקטלוג">
+            <span><strong id="workshopTotal">23</strong><small>סדנאות לבחירה</small></span>
+            <span><strong>ג׳–ה׳</strong><small>שכבות גיל</small></span>
+            <span><strong>60</strong><small>דקות לסדנה</small></span>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <span class="star star-a">✦</span><span class="star star-b">✧</span><span class="star star-c">✦</span>
+          <div class="orbit orbit-outer"></div><div class="orbit orbit-inner"></div>
+          <div class="planet"><div class="planet-shade"></div></div>
+          <div class="little-moon"></div>
+          <span class="hero-art-label">SCIENCE × SPACE × MAKING</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="catalog container" aria-labelledby="catalogTitle">
+      <div class="catalog-heading">
+        <div><p class="section-eyebrow">01 / בוחרים את המסע</p><h2 id="catalogTitle">הסדנאות שלנו</h2><p>חפשו, גלו פרטים ובחרו את הסדנאות שתרצו לכלול בקטלוג.</p></div>
+        <span class="catalog-count" id="resultCount" aria-live="polite">טוען סדנאות...</span>
+      </div>
+
+      <div class="filter-panel">
+        <label class="search-control" for="searchInput"><span class="field-label">חיפוש חופשי</span><span class="search-wrap"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m16 16 5 5"></path></svg><input id="searchInput" type="search" placeholder="שם סדנה, נושא מדעי או תוצר..." autocomplete="off"></span></label>
+        <label class="select-control" for="fieldFilter"><span class="field-label">תחום תוכן</span><select id="fieldFilter"><option value="">כל תחומי התוכן</option></select></label>
+        <div class="filter-actions"><button class="filter-reset" id="resetFilters" type="button">איפוס סינון</button></div>
+      </div>
+
+      <div class="selection-tools">
+        <div class="selection-note"><span class="selection-dot"></span><strong id="selectedCountTop">0 סדנאות נבחרו</strong><span>הבחירה נשמרת במהלך הגלישה בעמוד</span></div>
+        <div class="selection-buttons">
+          <button id="selectVisible" class="text-button" type="button">בחרו את המוצגות</button>
+          <button id="clearSelection" class="text-button muted" type="button">נקה בחירה</button>
+        </div>
+      </div>
+
+      <div id="cardsGrid" class="cards-grid" aria-label="רשימת הסדנאות"></div>
+      <div id="emptyState" class="empty-state" hidden><strong>לא נמצאו סדנאות התואמות לסינון.</strong><p>כדאי לנסות מילת חיפוש אחרת או לאפס את המסננים.</p><button type="button" id="resetEmpty" class="button button-secondary">הצגת כל הסדנאות</button></div>
+    </section>
+
+    <aside class="bottom-tray" aria-label="הפקת קטלוג">
+      <div class="container tray-inner"><div class="tray-summary"><span class="tray-icon" aria-hidden="true">✦</span><span><strong id="selectedCount">0 סדנאות נבחרו</strong><small>הפיקו קטלוג אישי מהסדנאות שבחרתם</small></span></div><button id="printButton" class="button button-primary" type="button" disabled>הפקת קטלוג PDF <span aria-hidden="true">↗</span></button></div>
+    </aside>
+  </main>
+
+  <footer class="site-footer"><div class="container footer-inner"><span>© תעשיידע · תעשייה למען חינוך מתקדם (ע״ר)</span><span>לומדים · חוקרים · יוצרים</span></div></footer>
+
+  <dialog id="detailsDialog" class="details-dialog" aria-labelledby="dialogTitle"><div class="dialog-shell"><button id="closeDialog" type="button" class="dialog-close" aria-label="סגירת פרטי הסדנה">×</button><div id="dialogContent"></div></div></dialog>
+  <div id="printRoot" class="print-root" aria-hidden="true"></div>
+</body>
+</html>

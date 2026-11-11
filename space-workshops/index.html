@@ -6,6 +6,14 @@
   <meta name="theme-color" content="#0b1831">
   <meta name="description" content="23 סדנאות STEM בהשראת עולם החלל לתלמידי כיתות ג׳–ה׳. בחרו, סננו והפיקו קטלוג סדנאות מותאם.">
   <link rel="canonical" href="https://taasiyeda.work/space-workshops/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="he_IL">
+  <meta property="og:site_name" content="תעשיידע">
+  <meta property="og:title" content="סדנאות חלל | תעשיידע">
+  <meta property="og:description" content="סדנאות STEM חווייתיות לכיתות ג׳–ה׳: מדע, חקר והתנסות עם תוצר אישי לכל תלמיד.">
+  <meta property="og:url" content="https://taasiyeda.work/space-workshops/">
+  <meta property="og:image" content="https://taasiyeda.work/pictures/courses/space.png">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -49,8 +57,14 @@
 
     <section class="catalog container" aria-labelledby="catalogTitle">
       <div class="catalog-heading">
-        <div><p class="section-eyebrow">01 / בוחרים את המסע</p><h2 id="catalogTitle">הסדנאות שלנו</h2><p>חפשו, גלו פרטים ובחרו את הסדנאות שתרצו לכלול בקטלוג.</p></div>
+        <div><p class="section-eyebrow">01 / בוחרים את המסע</p><h2 id="catalogTitle">הסדנאות שלנו</h2><p id="catalogDescription">חפשו, גלו פרטים ובחרו את הסדנאות שתרצו לכלול בקטלוג.</p></div>
         <span class="catalog-count" id="resultCount" aria-live="polite">טוען סדנאות...</span>
+      </div>
+
+      <div class="shared-banner" id="sharedBanner" hidden>
+        <span class="shared-banner-icon" aria-hidden="true">✦</span>
+        <div><strong id="sharedBannerTitle">קטלוג סדנאות שנבחרו עבורכם</strong><p>הקישור מציג רק את הסדנאות הכלולות בהצעה זו, עם פירוט הלמידה והתוצר בכל סדנה.</p></div>
+        <button type="button" class="button button-secondary" id="sharedPrintButton">הפקת PDF</button>
       </div>
 
       <div class="filter-panel">
@@ -59,7 +73,7 @@
         <div class="filter-actions"><button class="filter-reset" id="resetFilters" type="button">איפוס סינון</button></div>
       </div>
 
-      <div class="selection-tools">
+      <div class="selection-tools" id="selectionTools">
         <div class="selection-note"><span class="selection-dot"></span><strong id="selectedCountTop">0 סדנאות נבחרו</strong><span>הבחירה נשמרת במהלך הגלישה בעמוד</span></div>
         <div class="selection-buttons">
           <button id="selectVisible" class="text-button" type="button">בחרו את המוצגות</button>
@@ -72,13 +86,39 @@
     </section>
 
     <aside class="bottom-tray" aria-label="הפקת קטלוג">
-      <div class="container tray-inner"><div class="tray-summary"><span class="tray-icon" aria-hidden="true">✦</span><span><strong id="selectedCount">0 סדנאות נבחרו</strong><small>הפיקו קטלוג אישי מהסדנאות שבחרתם</small></span></div><button id="printButton" class="button button-primary" type="button" disabled>הפקת קטלוג PDF <span aria-hidden="true">↗</span></button></div>
+      <div class="container tray-inner">
+        <div class="tray-summary"><span class="tray-icon" aria-hidden="true">✦</span><span><strong id="selectedCount">0 סדנאות נבחרו</strong><small>הפיקו PDF או קישור דיגיטלי מהסדנאות שבחרתם</small></span></div>
+        <div class="tray-actions">
+          <button id="printButton" class="button button-secondary" type="button" disabled>הפקת PDF</button>
+          <button id="shareButton" class="button button-primary" type="button" disabled>קישור דיגיטלי לוואטסאפ <span aria-hidden="true">↗</span></button>
+        </div>
+      </div>
     </aside>
   </main>
 
   <footer class="site-footer"><div class="container footer-inner"><span>© תעשיידע · תעשייה למען חינוך מתקדם (ע״ר)</span><span>לומדים · חוקרים · יוצרים</span></div></footer>
 
   <dialog id="detailsDialog" class="details-dialog" aria-labelledby="dialogTitle"><div class="dialog-shell"><button id="closeDialog" type="button" class="dialog-close" aria-label="סגירת פרטי הסדנה">×</button><div id="dialogContent"></div></div></dialog>
+  <dialog id="shareDialog" class="share-dialog" aria-labelledby="shareTitle">
+    <div class="share-shell">
+      <div class="share-heading">
+        <div><p class="section-eyebrow">הפקת קטלוג דיגיטלי</p><h2 id="shareTitle">מוכנים לשליחה בוואטסאפ</h2></div>
+        <button id="closeShareDialog" type="button" class="dialog-close share-close" aria-label="סגירת חלון השיתוף">×</button>
+      </div>
+      <p class="share-description" id="shareDescription">נוצר קישור אישי המציג את הסדנאות שבחרתם. ערכו את הודעת הפתיחה ושלחו ישירות בוואטסאפ.</p>
+      <label class="share-label" for="shareMessage">הודעת פתיחה לוואטסאפ</label>
+      <textarea id="shareMessage" class="share-textarea" rows="9" spellcheck="true" dir="rtl"></textarea>
+      <label class="share-label" for="shareLink">הקישור הדיגיטלי</label>
+      <input id="shareLink" class="share-link-input" type="text" dir="ltr" readonly>
+      <div class="share-link-actions">
+        <button id="copyShareLink" class="button button-secondary" type="button">העתקת קישור</button>
+        <button id="copyShareText" class="button button-secondary" type="button">העתקת ההודעה</button>
+        <a id="previewShareLink" href="#" rel="noopener" target="_blank" class="share-preview">תצוגה מקדימה ↗</a>
+      </div>
+      <a id="sendWhatsApp" class="button whatsapp-button" href="#" target="_blank" rel="noopener noreferrer">שליחה בוואטסאפ <span aria-hidden="true">↗</span></a>
+      <p class="share-feedback" id="shareFeedback" role="status" aria-live="polite"></p>
+    </div>
+  </dialog>
   <div id="printRoot" class="print-root" aria-hidden="true"></div>
 </body>
 </html>

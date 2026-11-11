@@ -209,3 +209,126 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
  .tray-actions .button{font-size:10px;white-space:normal;line-height:1.35;text-align:center}
 }
 @media print{.share-dialog{display:none!important}}
+
+
+/* Compact centered desktop layout — visual scale ~75%, never CSS zoom */
+@media screen and (min-width:691px){
+  html{background:#edf2f6}
+  body{
+    width:calc(100% - 40px);
+    max-width:1040px;
+    margin:18px auto 24px;
+    border:1px solid #dde6ef;
+    border-radius:15px;
+    box-shadow:0 15px 48px rgba(17,39,66,.10);
+  }
+  .container{width:calc(100% - 72px);max-width:920px}
+  .site-header{border-radius:15px 15px 0 0}
+  .site-footer{border-radius:0 0 15px 15px}
+  .site-header{height:60px}
+  .brand{gap:8px}
+  .brand img{width:31px;height:38px}
+  .brand strong{font-size:16px}
+  .brand small{font-size:10px}
+  .home-link{font-size:11px;gap:8px}
+
+  .hero-inner{min-height:280px;gap:22px}
+  .hero-copy{padding:37px 0}
+  .eyebrow{font-size:10px;margin-bottom:10px;gap:8px}
+  .hero h1{font-size:clamp(32px,3.2vw,40px);line-height:1.22;max-width:550px}
+  .hero-intro{font-size:13px;line-height:1.75;max-width:460px;margin:14px 0 20px}
+  .hero-facts{gap:18px}
+  .hero-facts>span{padding-inline-start:14px;min-width:65px}
+  .hero-facts strong{font-size:18px}
+  .hero-facts small{font-size:10px}
+  .hero-art{height:245px}
+  .orbit-outer{width:270px;height:145px}
+  .orbit-inner{width:205px;height:107px}
+  .planet{width:135px;height:135px;box-shadow:inset -20px -18px 28px #092748,0 0 0 20px #66acd50b,0 0 68px #2b8ba13d}
+  .little-moon{width:23px;height:23px;top:30px;left:26px}
+  .hero-art-label{font-size:8px;letter-spacing:2px}
+  .star-a{top:16px}.star-b{bottom:21px}
+
+  .catalog{padding-block:34px 46px}
+  .catalog-heading{gap:15px;margin-bottom:16px}
+  .section-eyebrow{font-size:10px;margin-bottom:4px}
+  .catalog-heading h2{font-size:25px}
+  .catalog-heading p:not(.section-eyebrow){font-size:12px;margin-top:5px}
+  .catalog-count{font-size:11px;padding:6px 11px}
+  .filter-panel{padding:13px;border-radius:14px;gap:10px;grid-template-columns:minmax(0,1fr) 205px auto}
+  .field-label{font-size:11px}
+  .search-control,.select-control{gap:5px}
+  .search-wrap,.select-control select{height:39px;border-radius:9px}
+  .search-wrap input,.select-control select{font-size:12px}
+  .filter-reset{height:39px;border-radius:9px;padding:0 12px;font-size:11px}
+
+  .selection-tools{margin:14px 0 14px;gap:10px}
+  .selection-note{gap:8px;font-size:11px}
+  .selection-note strong{font-size:11px}
+  .selection-buttons{gap:13px}
+  .text-button{font-size:11px}
+  .cards-grid{gap:16px}
+  .workshop-card{border-radius:15px}
+  .card-photo{height:148px}
+  .card-index{top:10px;right:10px;font-size:10px;padding:3px 7px}
+  .card-choice{top:10px;left:10px;font-size:10px;padding:5px 7px;gap:6px}
+  .card-choice input{width:14px;height:14px}
+  .card-body{padding:15px 15px 13px}
+  .card-category{font-size:10px}
+  .card-title{font-size:17px;line-height:1.32;margin:5px 0 8px;min-height:45px}
+  .card-lead{font-size:11.5px;line-height:1.55;margin-bottom:11px;min-height:54px}
+  .card-product{font-size:10.5px;line-height:1.5;padding:8px 9px;min-height:69px}
+  .card-product strong{font-size:10px;margin-bottom:2px}
+  .card-meta{margin-top:10px;gap:5px}
+  .card-meta span{font-size:10px;padding:2px 6px}
+  .card-footer{margin-top:12px;padding-top:9px}
+  .card-footer button{font-size:10.5px}
+  .card-footer small{font-size:9px}
+  .artwork .art-planet{width:70px;height:70px}
+  .artwork .art-hint{font-size:9px;bottom:10px;left:10px}
+
+  .shared-banner{margin-bottom:15px;padding:12px 14px;border-radius:12px}
+  .shared-banner strong{font-size:13px}
+  .shared-banner p{font-size:11px}
+  .shared-banner-icon{width:35px;height:35px;font-size:20px}
+  .shared-banner .button{font-size:11px;min-height:36px}
+
+  .tray-inner{min-height:64px;padding-block:8px}
+  .tray-summary{gap:10px}
+  .tray-summary strong{font-size:12px}
+  .tray-summary small{font-size:10px}
+  .tray-icon{width:31px;height:31px;font-size:19px;border-radius:9px}
+  .tray-actions{gap:8px}
+  .tray-actions .button{font-size:12px;min-height:38px;padding:8px 13px;gap:8px;border-radius:9px}
+  .footer-inner{padding-block:15px;font-size:10px}
+
+  .details-dialog{width:min(560px,calc(100% - 30px));border-radius:17px}
+  .dialog-cover,.dialog-cover .artwork{height:180px}
+  .dialog-body{padding:20px 25px 24px}
+  .dialog-body h2{font-size:23px}
+  .dialog-meta{margin-bottom:15px}
+  .dialog-block{margin-bottom:16px}
+  .dialog-block h3{font-size:12px}
+  .dialog-block p{font-size:12px}
+  .share-dialog{width:min(500px,calc(100% - 30px));border-radius:17px}
+  .share-shell{padding:21px 23px 18px}
+  .share-heading h2{font-size:20px}
+  .share-description{font-size:12px;margin:9px 0 12px}
+  .share-textarea{min-height:174px;font-size:12px}
+  .share-link-input{height:39px;font-size:12px}
+  .share-link-actions .button{min-height:36px}
+  .whatsapp-button{min-height:42px;font-size:12px}
+}
+@media screen and (min-width:691px) and (max-width:980px){
+  body{width:calc(100% - 32px);margin:16px auto}
+  .container{width:calc(100% - 50px)}
+  .hero h1{font-size:33px}
+  .hero-inner{gap:14px}
+  .filter-panel{grid-template-columns:minmax(0,1fr) 190px}
+  .filter-actions{grid-column:1/-1;justify-self:end}
+  .cards-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .card-photo{height:168px}
+  .card-title{min-height:0}
+  .card-lead{min-height:0}
+  .card-product{min-height:0}
+}

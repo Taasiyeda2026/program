@@ -33,19 +33,27 @@
       '<span class="art-orbit"></span><span class="art-planet"></span><span class="art-spark" aria-hidden="true">✦</span><span class="art-hint">המחשה גרפית</span></div>';
   }
   function photoHTML(w, lazy) {
-    return w.photo
-      ? '<img src="' + escapeHTML(w.photo) + '" alt="תמונת המחשה של התוצר: ' + escapeHTML(w.title) + '"' + (lazy ? ' loading="lazy"' : '') + '>'
-      : artworkHTML(w);
+    const firstImage = w.imageFiles && w.imageFiles[0];
+    if (!firstImage && !w.photo) return artworkHTML(w);
+    const source = firstImage ? './media/' + encodeURIComponent(firstImage) : w.photo;
+    return '<img src="' + escapeHTML(source) + '" data-workshop-id="' + w.id +
+      '" alt="תמונת התוצר: ' + escapeHTML(w.title) + '"' + (lazy ? ' loading="lazy"' : '') + '>';
+  }
+  function useFallback(img, w) {
+    if (w.photo && img.dataset.fallbackStage !== 'original') {
+      img.dataset.fallbackStage = 'original';
+      img.src = w.photo;
+      return;
+    }
+    img.insertAdjacentHTML('afterend', artworkHTML(w));
+    img.remove();
   }
   function handleBrokenPhotos(root) {
-    root.querySelectorAll('img[src*="/summer/image/"]').forEach((img) => {
+    root.querySelectorAll('img[data-workshop-id]').forEach((img) => {
       img.addEventListener('error', () => {
         const w = workshops.find((item) => item.id === Number(img.dataset.workshopId));
-        if (w) {
-          img.insertAdjacentHTML('afterend', artworkHTML(w));
-          img.remove();
-        }
-      }, { once: true });
+        if (w) useFallback(img, w);
+      });
     });
   }
   function shownWorkshops() {
@@ -123,10 +131,7 @@
       render();
     });
     dialog.querySelectorAll('img').forEach((img) => {
-      img.addEventListener('error', () => {
-        img.insertAdjacentHTML('afterend', artworkHTML(w));
-        img.remove();
-      }, { once: true });
+      img.addEventListener('error', () => useFallback(img, w));
     });
     if (typeof dialog.showModal === 'function') dialog.showModal();
     else dialog.setAttribute('open', '');
@@ -162,14 +167,9 @@
     $('printRoot').innerHTML = cover + pages;
     $('printRoot').querySelectorAll('img').forEach((img) => {
       img.addEventListener('error', () => {
-        const item = img.closest('.print-item');
-        const index = item ? Number(item.querySelector('.print-item-topline').textContent.match(/\d+/)?.[0]) : NaN;
-        const w = workshops.find((v) => v.id === index);
-        if (w) {
-          img.insertAdjacentHTML('afterend', artworkHTML(w));
-          img.remove();
-        }
-      }, { once:true });
+        const w = workshops.find((v) => v.id === Number(img.dataset.workshopId));
+        if (w) useFallback(img, w);
+      });
     });
   }
   async function start() {

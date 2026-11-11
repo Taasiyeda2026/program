@@ -196,7 +196,11 @@
     const url = new URL(window.location.href);
     url.search = '';
     url.hash = '';
-    url.searchParams.set('s', selectedIDs().join(','));
+    const ids = selectedIDs();
+    const isAll = ids.length === workshops.length;
+    // Compact, stable selection: at most 23 bits encoded as base36.
+    const mask = ids.reduce((bits, id) => bits | (1 << (id - 1)), 0);
+    url.searchParams.set('s', isAll ? 'all' : 'x' + mask.toString(36));
     return url.toString();
   }
   function defaultWhatsAppIntro(count) {
@@ -247,10 +251,23 @@
   }
   function activateRecipientView() {
     const raw = new URLSearchParams(window.location.search).get('s');
-    // A malformed or empty link must not accidentally generate an empty catalog.
-    if (!raw || !/^\d{1,2}(,\d{1,2}){0,22}$/.test(raw)) return;
+    // Accept old comma-separated links as well as the compact new format.
+    // Invalid links return to the editable, unfiltered catalog.
+    if (!raw) return;
     const available = new Set(workshops.map((w) => w.id));
-    const linkedIDs = new Set(raw.split(',').map(Number).filter((id) => available.has(id)));
+    let linkedIDs;
+    if (raw === 'all') {
+      linkedIDs = new Set(available);
+    } else if (/^x[0-9a-z]{1,6}$/.test(raw)) {
+      const mask = parseInt(raw.slice(1), 36);
+      const validMask = workshops.reduce((bits, w) => bits | (1 << (w.id - 1)), 0);
+      if (mask <= 0 || (mask & ~validMask) !== 0) return;
+      linkedIDs = new Set(workshops.filter((w) => (mask & (1 << (w.id - 1))) !== 0).map((w) => w.id));
+    } else if (/^\d{1,2}(,\d{1,2}){0,22}$/.test(raw)) {
+      linkedIDs = new Set(raw.split(',').map(Number).filter((id) => available.has(id)));
+    } else {
+      return;
+    }
     if (linkedIDs.size === 0) return;
     selected = linkedIDs;
     sharedView = true;

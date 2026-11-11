@@ -270,8 +270,9 @@
       workshops = data.workshops;
       selected = new Set(workshops.map((w) => w.id));
       activateRecipientView();
-      $('workshopTotal').textContent = String(workshops.length);
-      [...new Set(workshops.map((w) => w.field))].sort((a,b)=>a.localeCompare(b,'he'))
+      $('workshopTotal').textContent = String(sharedView ? selected.size : workshops.length);
+      $('workshopTotalLabel').textContent = sharedView ? 'סדנאות בקטלוג' : 'סדנאות לבחירה';
+      [...new Set(workshops.filter((w) => !sharedView || selected.has(w.id)).map((w) => w.field))].sort((a,b)=>a.localeCompare(b,'he'))
         .forEach((field) => fieldFilter.add(new Option(field, field)));
       render();
     } catch (error) {

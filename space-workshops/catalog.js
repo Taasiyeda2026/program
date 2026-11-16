@@ -98,7 +98,7 @@
         '<h3 class="card-title">' + escapeHTML(w.title) + '</h3>' +
         '<p class="card-lead">' + escapeHTML(w.lesson) + '</p>' +
         '<div class="card-product"><strong>התוצר שבונים</strong><span>' + escapeHTML(w.product) + '</span></div>' +
-        '<div class="card-meta"><span>כיתות ג׳–ה׳</span><span>60 דקות</span></div>' +
+        '<div class="card-meta"><span>כיתות א׳–ו׳</span><span>45 דקות</span></div>' +
         '<div class="card-footer"><button class="details-button" type="button" aria-label="פרטים מלאים על ' + escapeHTML(w.title) + '">לפרטי הסדנה המלאים ←</button><small>מדע · יצירה · התנסות</small></div>' +
       '</div>';
     article.querySelector('input').addEventListener('change', (event) => {
@@ -134,7 +134,7 @@
       '<div class="dialog-body" style="--accent:' + c[0] + '">' +
         '<p class="card-category">' + escapeHTML(w.field) + '</p>' +
         '<h2 id="dialogTitle">' + escapeHTML(w.title) + '</h2>' +
-        '<div class="dialog-meta"><span>כיתות ג׳–ה׳</span><span>משך הסדנה: 60 דקות</span><span>תוצר אישי</span></div>' +
+        '<div class="dialog-meta"><span>כיתות א׳–ו׳</span><span>משך הסדנה: 45 דקות</span><span>תוצר אישי</span></div>' +
         '<section class="dialog-block"><h3>מה לומדים בסדנה?</h3><p>' + escapeHTML(w.lesson) + '</p></section>' +
         '<section class="dialog-block"><h3>מה התלמידים יוצרים?</h3><p>' + escapeHTML(w.product) + '</p></section>' +
         (sharedView ? '' : '<div class="dialog-actions"><button id="toggleDialogSelection" type="button" class="button ' + (isSelected ? 'button-secondary' : 'button-primary') + '">' + (isSelected ? 'הסרה מהקטלוג' : 'הוספה לקטלוג') + '</button></div>') +
@@ -159,7 +159,7 @@
       '<div class="print-item-body">' +
         '<div class="print-item-topline">סדנה ' + String(w.id).padStart(2, '0') + ' / ' + escapeHTML(w.field) + '</div>' +
         '<h2>' + escapeHTML(w.title) + '</h2>' +
-        '<div class="print-brief"><span>כיתות ג׳–ה׳</span><span>60 דקות</span></div>' +
+        '<div class="print-brief"><span>כיתות א׳–ו׳</span><span>45 דקות</span></div>' +
         '<h3>על השיעור</h3><p>' + escapeHTML(w.lesson) + '</p>' +
         '<h3>על התוצר</h3><p>' + escapeHTML(w.product) + '</p>' +
       '</div></article>';
@@ -173,11 +173,11 @@
       '<div class="print-mark">תעשיידע | קטלוג סדנאות</div>' +
       '<h1>יוצאים לגלות.<br><em>חוזרים עם משהו שבנינו.</em></h1>' +
       '<p>סדנאות STEM בהשראת עולם החלל: למידה מדעית, חקר והתנסות יוצרת.</p>' +
-      '<div class="print-summary">' + items.length + ' סדנאות נבחרות · ' + uniqueFields + ' תחומי תוכן · כיתות ג׳–ה׳ · 60 דקות לסדנה</div>' +
+      '<div class="print-summary">' + items.length + ' סדנאות נבחרות · ' + uniqueFields + ' תחומי תוכן · כיתות א׳–ו׳ · 45 דקות לסדנה</div>' +
       '<div class="print-footer">תעשיידע — תעשייה למען חינוך מתקדם (ע״ר)</div>' +
       '</section>';
     const pages = groups.map((group, i) =>
-      '<section class="print-page"><header class="print-page-head"><span>סדנאות חלל | תעשיידע</span><small>סדנאות לבחירה · כיתות ג׳–ה׳</small></header>' +
+      '<section class="print-page"><header class="print-page-head"><span>סדנאות חלל | תעשיידע</span><small>סדנאות לבחירה · כיתות א׳–ו׳</small></header>' +
       '<div class="print-items">' + group.map(printItem).join('') + '</div>' +
       '<footer class="print-page-foot"><span>מדע · יצירה · התנסות</span><span>' + (i + 2) + ' / ' + (groups.length + 1) + '</span></footer></section>'
     ).join('');
@@ -205,7 +205,7 @@
   }
   function defaultWhatsAppIntro(count) {
     const number = count === 1 ? 'סדנה אחת' : count + ' סדנאות';
-    return 'שלום,\n\nמצורף קטלוג דיגיטלי של סדנאות החלל של תעשיידע, המיועדות לתלמידי כיתות ג׳–ה׳.\n\nבקטלוג מוצגות ' + number + ' שנבחרו עבורכם. הסדנאות משלבות למידה מדעית, התנסות חווייתית ויצירת תוצר אישי. בקישור תוכלו להכיר את התוכן הלימודי ואת התוצר בכל סדנה.\n\nנשמח לסייע בבחירת הסדנאות המתאימות.\nצוות תעשיידע';
+    return 'שלום,\n\nמצורף קטלוג דיגיטלי של סדנאות החלל של תעשיידע, המיועדות לתלמידי כיתות א׳–ו׳.\n\nבקטלוג מוצגות ' + number + ' שנבחרו עבורכם. הסדנאות משלבות למידה מדעית, התנסות חווייתית ויצירת תוצר אישי. בקישור תוכלו להכיר את התוכן הלימודי ואת התוצר בכל סדנה.\n\nנשמח לסייע בבחירת הסדנאות המתאימות.\nצוות תעשיידע';
   }
   function fullWhatsAppMessage() {
     const introduction = $('shareMessage').value.trim();

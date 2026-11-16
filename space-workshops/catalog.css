@@ -386,3 +386,11 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
   .card-lead,.card-product{font-size:14px}
   .shared-banner{gap:8px}
 }
+
+/* Recipient catalog: direct transition from the hero to the workshop cards. */
+@media screen {
+  .shared-view .catalog-heading,
+  .shared-view .shared-banner,
+  .shared-view .filter-panel {display:none!important}
+  .shared-view .catalog {padding-top:24px}
+}

@@ -480,3 +480,41 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
  .card-title{font-size:20px}
  .tray-actions .button{white-space:normal}
 }
+
+/* Public editorial depth: pearl relief, luminous space, product-focused cards. */
+@media screen {
+  body{box-shadow:0 22px 75px #28203f24,0 2px 8px #55446e20}
+  .hero{background:radial-gradient(ellipse at 20% 45%,#5271c055,transparent 48%),radial-gradient(ellipse at 8% 75%,#8a56bc88,transparent 42%),radial-gradient(ellipse at 90% 100%,#413269aa,transparent 46%),linear-gradient(145deg,#050d24,#172b62 48%,#160f35);box-shadow:inset 0 1px 1px #b6b5ff55,inset 0 -16px 40px #0b092d88}
+  .hero-inner{min-height:265px}
+  .hero-copy{padding:24px 0 38px}
+  .hero h1{color:#fff9ee;text-shadow:0 1px 0 #fff,0 3px 0 #a6909f,0 5px 0 #63527a,0 9px 20px #000b,0 0 34px #caaaff33}
+  .hero-art{filter:drop-shadow(0 15px 20px #02061777)}
+  .planet{background:radial-gradient(ellipse at 22% 16%,#fff 0,#b5d9ff 6%,#668dd7 20%,#365bb6 39%,#222a79 61%,#090e35 85%);box-shadow:inset -25px -18px 35px #080c2cdd,inset 6px 4px 17px #e4f3ffcc,0 0 18px #a6d6ff99,0 0 50px #a38dff88,0 18px 30px #05071899}
+  .orbit-outer{border-color:#fff1ce;box-shadow:0 0 4px #fff,0 0 17px #ffd8a8cc,0 0 36px #caa1ff66}
+  .hero:after{background:linear-gradient(170deg,#fff 5%,#f0d4ad 17%,#fffaf3 25%,#dfd2ef 48%,#fffdf9 70%);box-shadow:0 -2px 5px #fff,0 -7px 24px #ffdeb588,0 -20px 55px #a28fea55}
+  .catalog{position:relative;padding-block:20px 34px}
+  .cards-grid{gap:18px}
+  .workshop-card{position:relative;background:linear-gradient(148deg,#fff 0%,#fffcf6 31%,#f5edf7 78%,#f6e9d7);border:1px solid #e2d2c8;box-shadow:inset 0 1px 1px #fff,inset 0 -2px 5px #c9b2cb33,0 3px 4px #3c284714,0 12px 26px #32233e20;transition:transform .2s,box-shadow .2s}
+  .workshop-card:hover{box-shadow:inset 0 1px 1px #fff,0 17px 35px #31214633,0 0 16px #f5d2a878}
+  .card-photo{margin:8px 8px 0;aspect-ratio:4/3;background:radial-gradient(ellipse at 48% 35%,#fff 32%,#f7f2ee 72%,#eae2e8);border:1px solid #fff;box-shadow:inset 0 1px 5px #64527120,0 3px 8px #44354b17}
+  .card-photo img{mix-blend-mode:normal;filter:drop-shadow(0 4px 6px #241b371c)}
+  .card-index{background:linear-gradient(150deg,#fff5dd,#d9c0e5);border:1px solid #fff;box-shadow:0 2px 5px #231b3b25}
+  .card-title{color:#1a1940;text-shadow:0 1px 0 #fff,0 2px 2px #87729626;letter-spacing:-.2px}
+  .card-product{box-shadow:inset 0 1px 0 #fff,0 2px 6px #6951750e;border:1px solid #e9dac8;border-inline-start:3px solid #b7935d}
+  .card-footer button{box-shadow:inset 0 1px 1px #fff,0 2px 0 #dac2a0,0 5px 10px #694b3122}
+  .dialog-body h2{color:#191a42;text-shadow:0 1px 0 #fff,0 2px 3px #4a37652b}
+  .dialog-cover img{mix-blend-mode:normal}
+}
+@media screen and (max-width:690px){
+ .hero-inner{min-height:0}
+ .hero-copy{padding:20px 0 0}
+ .hero-art{height:155px;margin-bottom:19px}
+ .hero h1{font-size:30px}
+ .catalog{padding-block:16px 26px}
+ .cards-grid{gap:16px}
+ .card-photo{aspect-ratio:4/3}
+}
+@media print {
+  body:not(.management-view) .site-header,body:not(.management-view) main,body:not(.management-view) .site-footer{display:revert!important}
+  body:not(.management-view) .workshop-card{break-inside:avoid}
+}

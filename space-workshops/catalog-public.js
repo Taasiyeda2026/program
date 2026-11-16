@@ -60,10 +60,12 @@
   }
   function handleBrokenPhotos(root) {
     root.querySelectorAll('img[data-workshop-id]').forEach((img) => {
-      img.addEventListener('error', () => {
+      const recover = () => {
         const w = workshops.find((item) => item.id === Number(img.dataset.workshopId));
-        if (w) useFallback(img, w);
-      });
+        if (w && img.isConnected) useFallback(img, w);
+      };
+      img.addEventListener('error', recover);
+      if (img.complete && img.naturalWidth === 0) recover();
     });
   }
 

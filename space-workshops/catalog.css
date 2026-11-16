@@ -332,3 +332,57 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
   .card-lead{min-height:0}
   .card-product{min-height:0}
 }
+
+/* Catalog product-first layout: screen only, keeps PDF pagination independent. */
+@media screen {
+  .hero-inner{min-height:210px}
+  .hero-copy{padding:24px 0}
+  .hero-art{height:205px}
+  .hero h1{font-size:clamp(28px,3.1vw,38px)}
+  .hero-intro{margin:9px 0 14px}
+  .catalog{padding-block:24px 40px}
+  .catalog-heading{margin-bottom:12px}
+  .shared-banner{margin-bottom:12px;padding:9px 13px;background:#fff;border-color:var(--line)}
+  .shared-banner-icon{display:none}
+  .filter-panel{margin-bottom:18px;box-shadow:none}
+  .cards-grid{gap:18px;align-items:stretch}
+  .workshop-card{border-color:#dce5ec;box-shadow:0 5px 18px #1b35580c}
+  .shared-view .workshop-card.is-selected{border-color:#dce5ec;box-shadow:0 5px 18px #1b35580c}
+  .card-photo{height:auto;aspect-ratio:4/3;background:#fff;border-bottom:1px solid #e8edf3;min-height:0}
+  .card-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;padding:12px}
+  .card-photo::after{display:none}
+  .card-index{background:#edf2f7;color:#50647d;backdrop-filter:none}
+  .card-body{padding:14px 15px}
+  .card-category{font-size:11px}
+  .card-title{font-size:18px;min-height:0;margin:4px 0 8px;line-height:1.35}
+  .card-lead{display:block;overflow:visible;-webkit-line-clamp:unset;min-height:0;font-size:12px;line-height:1.65;margin:0 0 12px}
+  .card-product{min-height:0;padding:9px 10px;font-size:12px;line-height:1.6;background:#f6f8fa;border-inline-start:3px solid var(--accent,#09a6a6);border-right:0;border-inline-start:3px solid var(--accent,#09a6a6);border-radius:6px}
+  .card-product span{display:block;overflow:visible;-webkit-line-clamp:unset}
+  .card-product strong{font-size:11px}
+  .card-meta{margin-top:10px}
+  .card-footer{margin-top:12px;padding-top:10px}
+  .card-footer button{font-size:12px}
+  .card-footer small{display:none}
+  .dialog-cover{height:min(42vh,320px);background:#fff}
+  .dialog-cover img{object-fit:contain;display:block;padding:12px}
+  .dialog-cover .artwork{height:100%}
+}
+@media screen and (min-width:691px) and (max-width:980px){
+  .filter-panel{grid-template-columns:minmax(0,1fr) 165px auto}
+  .filter-actions{grid-column:auto;justify-self:stretch}
+}
+@media screen and (max-width:690px){
+  .hero-copy{padding:24px 0}
+  .hero-art{height:100%}
+  .hero h1{font-size:30px}
+  .catalog-heading{flex-wrap:wrap;gap:8px}
+  .filter-panel{grid-template-columns:minmax(0,1fr) auto;gap:9px}
+  .search-control{grid-column:1/-1}
+  .select-control select,.filter-reset{height:42px}
+  .filter-actions{align-self:end}
+  .card-photo{aspect-ratio:4/3}
+  .card-body{padding:16px}
+  .card-title{font-size:20px}
+  .card-lead,.card-product{font-size:14px}
+  .shared-banner{gap:8px}
+}

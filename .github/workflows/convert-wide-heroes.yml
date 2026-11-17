@@ -1,0 +1,45 @@
+name: Convert wide catalog heroes
+on:
+  push:
+    branches: [wide-hero-images-nov17]
+    paths: ['.github/workflows/convert-wide-heroes.yml']
+permissions:
+  contents: write
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install Pillow==12.1.1
+      - run: |
+          python - <<'PY'
+          from PIL import Image, ImageOps
+          from pathlib import Path
+          import io,base64
+          for name in ('stem','space'):
+              p=Path(f'workshops/assets/{name}-hero-wide.png')
+              im=ImageOps.exif_transpose(Image.open(p))
+              im.load()
+              print('ORIGINAL',name,im.size,im.mode,p.stat().st_size)
+              im=im.convert('RGBA' if 'A' in im.getbands() or 'transparency' in im.info else 'RGB')
+              im.thumbnail((1800,1200),Image.Resampling.LANCZOS)
+              out=p.with_suffix('.webp')
+              im.save(out,'WEBP',quality=92,method=6)
+              with Image.open(out) as check:
+                  check.load()
+                  assert check.size==im.size and check.format=='WEBP'
+              print('WEBP',name,im.size,out.stat().st_size)
+              im.thumbnail((680,340))
+              b=io.BytesIO()
+              im.convert('RGB').save(b,'JPEG',quality=75)
+              print('PREVIEW_'+name+':'+base64.b64encode(b.getvalue()).decode())
+          PY
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add workshops/assets/stem-hero-wide.webp workshops/assets/space-hero-wide.webp
+          git commit -m "Convert both wide hero PNGs to WebP"
+          git push origin HEAD:wide-hero-images-nov17

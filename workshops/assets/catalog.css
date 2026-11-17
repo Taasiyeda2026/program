@@ -150,3 +150,8 @@
 .catalog-app .card-actions .choose-btn{min-height:44px;width:44px;min-width:44px}
 .preview-fullscreen .admin-shell{width:calc(100% - 16px)}
 }
+
+/* Conditional prices must stay readable without widening compact cards or mobile dialogs. */
+.card-meta .card-price{flex-basis:100%;margin-inline-start:0;white-space:normal;line-height:1.45;overflow-wrap:anywhere}
+.dialog-facts .dialog-price{flex-basis:100%;display:block;white-space:normal;line-height:1.55;color:#214765;font-weight:700}
+.dialog-facts .dialog-price::before{display:none}

@@ -11,7 +11,15 @@ create table stem_catalog.workshops (
  title text not null, subtitle text, summary text, category_id text not null references stem_catalog.categories(id),
  duration_minutes integer check(duration_minutes>0), age_label text, sort_order integer,
  default_price numeric(12,2) check(default_price>=0), pricing_unit text,
- default_product_id text, status text not null default 'draft' check(status in ('draft','published','archived'))
+ included_students integer, additional_student_price numeric(12,2),
+ default_product_id text, status text not null default 'draft' check(status in ('draft','published','archived')),
+ constraint workshops_conditional_price_valid check (
+    (included_students is null and additional_student_price is null)
+    or (included_students is not null and included_students > 0
+      and additional_student_price is not null and additional_student_price >= 0
+      and default_price is not null and pricing_unit is not null
+      and pricing_unit in ('סדנה','לסדנה','כיתה','לכיתה','קבוצה','לקבוצה'))
+  )
 );
 create table stem_catalog.products (
  id text primary key, workshop_id text not null references stem_catalog.workshops(id),

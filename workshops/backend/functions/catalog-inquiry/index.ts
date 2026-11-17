@@ -12,18 +12,18 @@ async function rpc(name: string, data: unknown) {
  return r.json();
 }
 async function token(){
- const r=await fetch("https://login.microsoftonline.com/"+encodeURIComponent(env("MS_TENANT_ID"))+"/oauth2/v2.0/token",{method:"POST",body:new URLSearchParams({client_id:env("MS_CLIENT_ID"),client_secret:env("MS_CLIENT_SECRET"),scope:"https://graph.microsoft.com/.default",grant_type:"client_credentials"}),signal:AbortSignal.timeout(15000)});
+ const r=await fetch("https://login.microsoftonline.com/"+encodeURIComponent(env("FEEDBACK_STAFF_MS_TENANT_ID"))+"/oauth2/v2.0/token",{method:"POST",body:new URLSearchParams({client_id:env("FEEDBACK_STAFF_MS_CLIENT_ID"),client_secret:env("FEEDBACK_STAFF_MS_CLIENT_SECRET"),scope:"https://graph.microsoft.com/.default",grant_type:"client_credentials"}),signal:AbortSignal.timeout(15000)});
  if(!r.ok)throw Error("Microsoft authentication failed");
- const t=await r.json();if(!t.access_token)throw Error("Missing mail token");return t.access_token;
+ const t=await r.json();if(!t.access_token)throw Error("Missing mail token");const raw=t.access_token.split(".")[1];const claims=JSON.parse(atob(raw.replace(/-/g,"+").replace(/_/g,"/").padEnd(Math.ceil(raw.length/4)*4,"=")));if(!Array.isArray(claims.roles)||!claims.roles.includes("Mail.Send"))throw Error("Mail.Send permission missing");return t.access_token;
 }
 async function send(data: any, selections: any[]){
- if(!env("MS_TENANT_ID")||!env("MS_CLIENT_ID")||!env("MS_CLIENT_SECRET")||!env("MS_MAIL_SENDER"))throw Error("Mail configuration unavailable");
+ if(!env("FEEDBACK_STAFF_MS_TENANT_ID")||!env("FEEDBACK_STAFF_MS_CLIENT_ID")||!env("FEEDBACK_STAFF_MS_CLIENT_SECRET"))throw Error("Mail configuration unavailable");
  const access=await token();
  const catalog=data.catalog==="space"?"חלל":"STEM";
  const fields=[["שם איש הקשר",data.name],["בית ספר / ארגון",data.organization],["טלפון",data.phone],["מייל לחזרה",data.email],["קטלוג",catalog],["מספר פנייה",data.id]];
  const html='<div dir="rtl" style="font-family:Arial,sans-serif;color:#19334d;font-size:15px;line-height:1.65;max-width:680px"><h2 style="color:#164e78">פנייה חדשה מקטלוג הסדנאות</h2><table style="border-collapse:collapse;width:100%">'+fields.map(([k,v])=>'<tr><td style="padding:8px;border-bottom:1px solid #dde5ed;font-weight:bold">'+escapeHtml(k)+'</td><td style="padding:8px;border-bottom:1px solid #dde5ed">'+escapeHtml(v)+'</td></tr>').join("")+'</table><h3>הסדנאות שנבחרו</h3><ol>'+selections.map(i=>'<li><strong>'+escapeHtml(i.title)+'</strong> · כיתות '+escapeHtml(i.age)+(i.model&&i.model!=="דגם יחיד"?" · "+escapeHtml(i.model):"")+'</li>').join("")+'</ol>'+(data.notes?'<h3>הערות נוספות</h3><p style="white-space:pre-wrap">'+escapeHtml(data.notes)+'</p>':'')+'<p><a href="https://taasiyeda.work/workshops/admin/">למערכת ניהול הקטלוג</a></p></div>';
- const r=await fetch("https://graph.microsoft.com/v1.0/users/"+encodeURIComponent(env("MS_MAIL_SENDER"))+"/sendMail",{method:"POST",headers:{Authorization:"Bearer "+access,"Content-Type":"application/json"},body:JSON.stringify({message:{subject:"פנייה חדשה – קטלוג סדנאות מייקרים "+catalog+" | תעשיידע",body:{contentType:"HTML",content:html},toRecipients:[{emailAddress:{address:recipient}}],replyTo:[{emailAddress:{address:data.email}}]},saveToSentItems:true}),signal:AbortSignal.timeout(20000)});
- if(!r.ok)throw Error("Mail provider rejected request: "+r.status);
+ const r=await fetch("https://graph.microsoft.com/v1.0/users/"+encodeURIComponent(recipient)+"/sendMail",{method:"POST",headers:{Authorization:"Bearer "+access,"Content-Type":"application/json"},body:JSON.stringify({message:{subject:"פנייה חדשה – קטלוג סדנאות מייקרים "+catalog+" | תעשיידע",body:{contentType:"HTML",content:html},toRecipients:[{emailAddress:{address:recipient}}],replyTo:[{emailAddress:{address:data.email}}]},saveToSentItems:true}),signal:AbortSignal.timeout(20000)});
+ if(r.status!==202){const body=await r.json().catch(()=>({}));throw Error("Mail provider rejected request: "+r.status+" "+String(body?.error?.code||"").slice(0,80))}
 }
 Deno.serve(async(req)=>{
  const origin=req.headers.get("origin")||"";

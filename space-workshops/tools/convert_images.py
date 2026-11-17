@@ -1,11 +1,13 @@
 from pathlib import Path
 from PIL import Image, ImageOps, ImageChops
-import re, json
+import re, json, hashlib
 root=Path(__file__).resolve().parents[1]/'images'
 records=[]
+exceptions=[]
 for src in sorted(root.glob('*.png')):
     if not re.fullmatch(r'\d+(?:-\d+)?(?:\.[123])?',src.stem):
-        raise ValueError(f'Unexpected name: {src.name}')
+        exceptions.append({'filename':src.name,'reason':'nonstandard filename; not assigned to a product'})
+        continue
     dst=src.with_suffix('.webp')
     with Image.open(src) as im:
         im.load()
@@ -24,7 +26,8 @@ for src in sorted(root.glob('*.png')):
                         base=Image.new('RGBA',im.size,ImageColor.getrgb(bg)+(255,))
                         if ImageChops.difference(Image.alpha_composite(base,im).convert('RGB'),Image.alpha_composite(base,decoded.convert('RGBA')).convert('RGB')).getbbox():
                             raise ValueError(f'Pixel mismatch: {dst.name}')
-            records.append({'filename':dst.name,'width':im.width,'height':im.height,'bytes':dst.stat().st_size,'source_bytes':src.stat().st_size,'review_status':'blank' if blank else 'needs_review' if suspicious else 'pending_approval'})
-assert len(records)==len(list(root.glob('*.png')))
+            records.append({'filename':dst.name,'source_sha256':hashlib.sha256(src.read_bytes()).hexdigest(),'width':im.width,'height':im.height,'bytes':dst.stat().st_size,'source_bytes':src.stat().st_size,'review_status':'blank' if blank else 'needs_review' if suspicious else 'pending_approval'})
+assert len(records)+len(exceptions)==len(list(root.glob('*.png')))
+(root/'unmapped-images.json').write_text(json.dumps(exceptions,ensure_ascii=False,indent=2)+'\n')
 (root/'inventory.json').write_text(json.dumps(records,ensure_ascii=False,indent=2)+'\n')
 print('Converted',len(records),'files; blank:',sum(r['review_status']=='blank' for r in records),'suspect:',sum(r['review_status']=='needs_review' for r in records))

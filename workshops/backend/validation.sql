@@ -7,11 +7,11 @@ begin
  if tg_table_name='products' then
   select * into w from stem_catalog.workshops where id=new.workshop_id;
   if new.image_group<>w.image_base or not (new.model_id=w.image_base or new.model_id ~ ('^'||w.image_base||'-[0-9]+$')) then raise exception 'Model image group mismatch'; end if;
-  if exists(select 1 from stem_catalog.variant_products l join stem_catalog.workshop_variants v on v.id=l.variant_id where l.product_id=new.id and l.approved and new.age_label not in(v.age_group,'א׳–ו׳')) then raise exception 'Remove incompatible approved age links first'; end if;
+  if exists(select 1 from stem_catalog.variant_products l join stem_catalog.workshop_variants va on va.id=l.variant_id where l.product_id=new.id and l.approved and new.age_label not in(va.age_group,'א׳–ו׳')) then raise exception 'Remove incompatible approved age links first'; end if;
  elsif tg_table_name='workshop_variants' then
   select * into w from stem_catalog.workshops where id=new.workshop_id;
   if w.age_label not in(new.age_group,'א׳–ו׳') then raise exception 'Variant age does not match workshop'; end if;
-  if exists(select 1 from stem_catalog.variant_products l join stem_catalog.products p on p.id=l.product_id where l.variant_id=new.id and l.approved and p.age_label not in(new.age_group,'א׳–ו׳')) then raise exception 'Remove incompatible approved model links first'; end if;
+  if exists(select 1 from stem_catalog.variant_products l join stem_catalog.products pr on pr.id=l.product_id where l.variant_id=new.id and l.approved and pr.age_label not in(new.age_group,'א׳–ו׳')) then raise exception 'Remove incompatible approved model links first'; end if;
  elsif tg_table_name='variant_products' then
   select * into v from stem_catalog.workshop_variants where id=new.variant_id;
   select * into p from stem_catalog.products where id=new.product_id;

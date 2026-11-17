@@ -71,3 +71,26 @@
 
 /* Choose the product model before viewing its photo gallery. */
 .model-picker{margin:0 0 12px;min-width:0}.model-picker .selector-label{margin:0 0 7px}.model-picker .model-selector{padding:2px 1px 4px}.model-picker .model-option{min-height:44px}@media screen and (max-width:530px){.model-picker{margin-bottom:9px}.model-picker .model-option{min-width:0}.model-picker .selector-label{font-size:12px}}
+
+/* Customer inquiries: readable and usable equally on phone and desktop. */
+.shared-mode .choose-btn,.shared-mode .selection-bar{display:revert!important}
+.shared-mode .selection-bar{display:flex!important}
+.shared-mode .selection-bar[hidden]{display:none!important}
+.inquiry-dialog{width:min(640px,calc(100% - 24px));max-height:min(90vh,850px);max-height:min(90dvh,850px)}
+.inquiry-dialog .inquiry-list{margin:4px 0 16px}
+.inquiry-dialog .inquiry-item{min-width:0;flex:1}
+.inquiry-dialog .inquiry-item strong{font-weight:650;font-size:14px}
+.inquiry-item-options{display:flex;gap:7px;flex-wrap:wrap;margin-top:6px}
+.inquiry-item-options select{min-width:0;max-width:100%;font-size:12px;padding:7px 9px;border:1px solid #cbdbe6;background:#fff;color:#345775}
+.inquiry-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.inquiry-fields input{min-height:44px;font-size:14px}
+.inquiry-fields .inquiry-notes{grid-column:1/-1}
+.inquiry-dialog .inquiry-fields textarea{min-height:78px;font-size:14px}
+.inquiry-form .note{margin:12px 0 4px}
+.inquiry-form .dialog-actions .btn{min-height:44px;padding:10px 22px}
+.inquiry-trap{position:absolute;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none;clip-path:inset(50%)}
+.inquiry-result{font-size:15px;line-height:1.75;color:#31516a;margin:12px 0 20px}
+.inquiry-admin-list{display:grid;gap:10px}.inquiry-admin-card{border:1px solid #d7e2eb;background:#fff;border-radius:12px;padding:14px}
+.inquiry-admin-card summary{cursor:pointer;display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap;color:#224968}
+.inquiry-admin-meta{font-size:12px;color:#526e84}.inquiry-admin-details{display:grid;gap:6px;margin-top:12px;font-size:13px}.inquiry-admin-details h3{font-size:14px;margin-top:8px}.inquiry-admin-details ul{margin:0;padding-inline-start:20px}.inquiry-admin-notes{white-space:pre-wrap;overflow-wrap:anywhere}
+@media screen and (max-width:530px){.inquiry-dialog{width:calc(100% - 18px);padding:16px;max-height:92dvh}.inquiry-fields{grid-template-columns:1fr;gap:10px}.inquiry-fields input,.inquiry-dialog .inquiry-fields textarea{font-size:16px}.inquiry-item-options select{font-size:13px;min-height:36px}.inquiry-dialog .inquiry-item strong{font-size:13px}.inquiry-form .dialog-actions .btn{width:100%}.inquiry-admin-card summary{flex-direction:column;gap:6px}}

@@ -1,0 +1,46 @@
+name: Verify catalog inquiry delivery
+on:
+  push:
+    branches: [catalog-inquiry-email]
+    paths: ['.github/workflows/test-catalog-inquiry.yml']
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: node --check workshops/assets/catalog.js && node --check workshops/assets/api.js && node --check workshops/assets/admin.js
+      - name: Test public inquiry and idempotency with one clearly marked test email
+        run: |
+          python - <<'PY'
+          import json,re,urllib.request,urllib.error,uuid
+          from pathlib import Path
+          code=Path('workshops/assets/api.js').read_text()
+          url=re.search(r"const BASE='([^']+)'",code)[1]
+          key=re.search(r"const KEY='([^']+)'",code)[1]
+          anon=re.search(r"const ANON='([^']+)'",code)[1]
+          headers={'apikey':key,'Authorization':'Bearer '+anon,'Content-Type':'application/json','Origin':'https://taasiyeda.work'}
+          def post(path,body):
+              req=urllib.request.Request(url+path,data=json.dumps(body).encode(),headers=headers,method='POST')
+              try:
+                  with urllib.request.urlopen(req,timeout=75) as res: return res.status,json.loads(res.read())
+              except urllib.error.HTTPError as e:
+                  return e.code,json.loads(e.read())
+          status,data=post('/rest/v1/rpc/stem_catalog_public',{})
+          assert status==200 and len(data['workshops'])==41
+          w=next(w for w in data['workshops'] if 'stem' in w['catalogs'])
+          v=w['variants'][0]; m=v['models'][0]
+          payload={'id':str(uuid.uuid4()),'catalog':'stem','name':'בדיקת מערכת – לא פנייה אמיתית','organization':'תעשיידע – בדיקת שליחה','email':'office@think.org.il','phone':'0500000000','notes':'בדיקת תקינות טכנית חד-פעמית בעקבות אישור מנהל הקטלוג. אין צורך בטיפול.','items':[{'id':w['id'],'age':v['age_group'],'model':m['id']}]}
+          status,invalid=post('/functions/v1/catalog-inquiry',{**payload,'website':'bot'})
+          assert status==400, status
+          status,result=post('/functions/v1/catalog-inquiry',payload)
+          print('Inquiry test:',status,result)
+          assert status==200 and result.get('ok') and result.get('status')=='sent', result
+          status,again=post('/functions/v1/catalog-inquiry',payload)
+          assert status==200 and again.get('id')==result['id'] and again.get('status')=='sent'
+          print('Duplicate retry did not create another email.')
+          status,denied=post('/rest/v1/rpc/stem_catalog_list_inquiries',{})
+          assert status in (401,403,404), status
+          print('Anonymous inquiry listing denied.')
+          PY

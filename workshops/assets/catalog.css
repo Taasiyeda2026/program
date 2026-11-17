@@ -328,3 +328,38 @@
 .catalog-app .workshop-card .card-body{padding-inline:8px}
 .catalog-app .workshop-card .card-title{line-height:1.3;width:100%}
 }
+
+/* Final catalog polish: preserve layout and content, enhance usability. */
+@media screen{
+.catalog-app>.site-header{position:sticky;top:0;z-index:12}
+.catalog-app .header-selection{justify-self:end;border:1px solid #c9dce8;background:#f0f7fb;color:#214d6d;font-size:11px;font-weight:700;padding:6px 10px;border-radius:20px;white-space:nowrap}
+.catalog-app .header-selection:hover{background:#dcebf5}
+.catalog-app .workshop-card{transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+.catalog-app .workshop-card:has(.choose-btn[aria-pressed=true]){border-color:#519b80;box-shadow:0 0 0 1px #519b80,0 5px 15px #27634b19}
+.catalog-app .card-actions .choose-btn[aria-pressed=true]{background:#d5eee2;color:#185e43;border-color:#65a88a}
+.catalog-app .workshop-card .card-summary{color:#50677b}
+.catalog-app .card-actions .detail-btn{background:linear-gradient(145deg,#f5faff,#dceaf4);border-color:#bbd1e0;color:#174464}
+.catalog-app .back-top{position:fixed;inset-inline-end:18px;bottom:20px;z-index:13;width:36px;height:36px;border:1px solid #b5cad9;border-radius:50%;background:#f9fcff;color:#214d6d;font-size:21px;font-weight:700;box-shadow:0 3px 12px #173d6026}
+.catalog-app:has(.selection-bar:not([hidden])) .back-top{bottom:112px}
+}
+@media screen and (hover:hover) and (pointer:fine){.catalog-app .workshop-card:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--cat) 65%,#dce5eb);box-shadow:0 9px 22px #21365420}.catalog-app .card-actions .detail-btn:hover{background:#d2e5f3}}
+@media screen and (min-width:1001px){
+.catalog-app .hero .catalog-cover-art{max-width:280px}
+.catalog-app .filters .filter-select{min-width:180px}
+.catalog-app .filters .search-box{flex:1;min-width:0}
+.catalog-app .workshop-card .card-media,.catalog-app.space-theme .workshop-card .card-media{max-height:155px;padding:2px 5px}
+.catalog-app .workshop-card .card-media img{max-height:150px}
+.catalog-app>.catalog-main .cards-grid,.preview-fullscreen .admin-preview-root .catalog-app>.catalog-main .cards-grid{grid-template-columns:repeat(8,minmax(0,1fr))}
+.catalog-app>.catalog-main .cards-grid>.workshop-card{grid-column:span 2}
+.catalog-app>.catalog-main .cards-grid>.workshop-card:nth-child(4n+1):nth-last-child(1){grid-column:4 / span 2}
+.catalog-app>.catalog-main .cards-grid>.workshop-card:nth-child(4n+1):nth-last-child(2){grid-column:3 / span 2}
+.catalog-app>.catalog-main .cards-grid>.workshop-card:nth-child(4n+1):nth-last-child(3){grid-column:2 / span 2}
+.admin-preview-root .catalog-app>.catalog-main .cards-grid{grid-template-columns:repeat(6,minmax(0,1fr))}
+.admin-preview-root .catalog-app>.catalog-main .cards-grid>.workshop-card:nth-child(n){grid-column:span 2}
+.preview-fullscreen .admin-preview-root .catalog-app>.catalog-main .cards-grid>.workshop-card:nth-child(4n+1):nth-last-child(1){grid-column:4 / span 2}
+.preview-fullscreen .admin-preview-root .catalog-app>.catalog-main .cards-grid>.workshop-card:nth-child(4n+1):nth-last-child(2){grid-column:3 / span 2}
+.preview-fullscreen .admin-preview-root .catalog-app>.catalog-main .cards-grid>.workshop-card:nth-child(4n+1):nth-last-child(3){grid-column:2 / span 2}
+}
+@media screen and (max-width:1000px){.catalog-app .header-inner:has(.header-selection:not([hidden])){height:auto;min-height:56px;flex-wrap:wrap;padding-block:5px;gap:5px}.catalog-app .header-selection{margin-inline-start:auto}}
+@media screen and (max-width:530px){.catalog-app .header-selection{font-size:10px;padding:5px 8px}.catalog-app .back-top{width:34px;height:34px;inset-inline-end:10px}.catalog-app:has(.selection-bar:not([hidden])) .back-top{bottom:155px}}
+@media (prefers-reduced-motion:reduce){.catalog-app .workshop-card{transition:none}.catalog-app .workshop-card:hover{transform:none}}

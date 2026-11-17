@@ -1,0 +1,31 @@
+name: Audit two product images
+on:
+  push:
+    branches: [audit-compass-balloon-images]
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install Pillow
+      - run: |
+          python - <<'PY'
+          from PIL import Image, ImageDraw
+          import base64,io
+          from pathlib import Path
+          root=Path('space-workshops/images')
+          names=['1024.webp','1024.1.webp','1025.webp','1025.1.webp','cards/1024.webp','cards/1025.webp']
+          canvas=Image.new('RGB',(600,400),'white')
+          draw=ImageDraw.Draw(canvas)
+          for i,name in enumerate(names):
+              im=Image.open(root/name).convert('RGB')
+              im.thumbnail((185,165))
+              x=i%3*200;y=i//3*200
+              canvas.paste(im,(x+(200-im.width)//2,y))
+              draw.text((x+8,y+175),name,fill='black')
+          b=io.BytesIO()
+          canvas.save(b,format='JPEG',quality=75)
+          print('AUDIT_IMAGE:'+base64.b64encode(b.getvalue()).decode())
+          PY

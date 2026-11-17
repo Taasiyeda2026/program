@@ -311,14 +311,14 @@
 
 /* Deep-space hero and stronger STEM introduction. */
 @media screen{
-.catalog-app:not(.space-theme) .hero-intro{font-size:15px;font-weight:500;line-height:1.65;color:#345570}
+.catalog-app:not(.space-theme) .hero-intro{font-size:14.5px;font-weight:500;line-height:1.65;color:#345570}
 .catalog-app.space-theme .hero{background:radial-gradient(ellipse at 19% 35%,#244d7860 0%,transparent 38%),radial-gradient(ellipse at 52% 105%,#23659b60 0%,transparent 46%),linear-gradient(120deg,#07172d 0%,#061324 52%,#020914 100%);border-color:#365772}
 .catalog-app.space-theme .hero::before{opacity:.8;background-image:radial-gradient(circle,#bfeaff 0.65px,transparent 1px),radial-gradient(circle,#eff7ff 1px,transparent 1.6px),radial-gradient(circle,#729ac8 .5px,transparent .9px);background-size:29px 31px,97px 83px,19px 23px;background-position:0 0,17px 11px,8px 13px;mask-image:none}
 .catalog-app.space-theme .hero::after{bottom:-132px;height:151px;background:linear-gradient(180deg,#c5e7ff 0%,#eaf3f9 8%,#f6ecd9 33%,#fff9e9 72%);box-shadow:0 -2px 4px #d6eeffb3,0 -8px 20px #5ba7e96b,0 -20px 38px #266caa50}
 .catalog-app.space-theme .hero h1{color:#fff9e8;text-shadow:none}
 .catalog-app.space-theme .hero-intro{color:#e0effb}
 }
-@media screen and (max-width:700px){.catalog-app:not(.space-theme) .hero-intro{font-size:14px;line-height:1.6}}
+@media screen and (max-width:700px){.catalog-app:not(.space-theme) .hero-intro{font-size:13.5px;line-height:1.6}}
 
 /* Give long workshop titles more horizontal room without shrinking type. */
 @media screen and (min-width:1001px){

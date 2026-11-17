@@ -264,3 +264,6 @@
 
 /* Separate the category marker from its label, including the marker halo. */
 .catalog-app .category-line .category-tag{gap:9px}.catalog-app .category-tag::before{flex-shrink:0}
+
+/* Clear typographic hierarchy in workshop cards. */
+@media screen{.catalog-app .workshop-card .card-subtitle{font-size:12px;font-weight:700;color:#29445d;line-height:1.4}.catalog-app .workshop-card .card-summary{font-size:11px;font-weight:400;color:#63798d;line-height:1.6;margin-top:3px}}

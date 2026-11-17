@@ -411,3 +411,9 @@
 .catalog-app .hero .hero-intro,.catalog-app.space-theme .hero .hero-intro{font-size:13.5px;line-height:1.6}
 .catalog-app .hero .eyebrow,.catalog-app.space-theme .hero .eyebrow{font-size:11px;margin-top:12px}
 }
+
+/* English discipline line uses the same restrained palette as each catalog. */
+@media screen{
+.catalog-app:not(.space-theme) .hero .eyebrow{color:#527d9b;font-weight:650;letter-spacing:.45px}
+.catalog-app.space-theme .hero .eyebrow{color:#a9d9f4;font-weight:650;letter-spacing:.45px}
+}

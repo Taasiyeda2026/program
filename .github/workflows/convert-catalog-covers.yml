@@ -1,0 +1,42 @@
+name: Convert catalog covers
+on:
+  push:
+    branches: [catalog-whatsapp-covers]
+    paths: ['.github/workflows/convert-catalog-covers.yml']
+permissions:
+  contents: write
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install Pillow==12.1.1
+      - name: Convert and validate
+        run: |
+          python - <<'PY'
+          from PIL import Image, ImageOps
+          from pathlib import Path
+          for name in ('stem','space'):
+              p=Path(f'workshops/assets/catalog-{name}-cover.png')
+              im=ImageOps.exif_transpose(Image.open(p)).convert('RGBA')
+              bg=Image.new('RGBA',im.size,'white')
+              bg.alpha_composite(im)
+              im=bg.convert('RGB')
+              im.thumbnail((1200,630),Image.Resampling.LANCZOS)
+              for ext,fmt,quality in [('webp','WEBP',90),('jpg','JPEG',90)]:
+                  out=p.with_suffix('.'+ext)
+                  im.save(out,fmt,quality=quality,optimize=True)
+                  with Image.open(out) as check:
+                      check.load()
+                      assert check.size==im.size and check.format==fmt
+                  print(out, im.size, out.stat().st_size)
+          PY
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add workshops/assets/catalog-*-cover.webp workshops/assets/catalog-*-cover.jpg
+          git commit -m "Convert original catalog covers to WebP and JPEG social preview"
+          git push origin HEAD:catalog-whatsapp-covers

@@ -451,3 +451,19 @@
 .catalog-app.space-theme>.catalog-main{background:linear-gradient(180deg,#061324 0px,#102842 230px,#2c4a64 355px,#96aec2 470px,#e4edf1 580px,transparent 720px)}
 .catalog-app.space-theme .results-head h2{color:#173d60;text-shadow:none}
 }
+
+/* Keep native scrollbars inside the rounded dialog shell. */
+@media screen{
+.catalog-app .dialog.workshop-detail,.catalog-app .dialog.inquiry-dialog{overflow:hidden;padding:0}
+.catalog-app .dialog>.dialog-scroll{box-sizing:border-box;position:relative;min-width:0;max-height:inherit;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#9aabb8 transparent}
+.catalog-app .workshop-detail>.dialog-scroll{max-height:calc(100dvh - 40px)}
+.catalog-app .inquiry-dialog>.dialog-scroll{padding:22px;max-height:min(90dvh,850px)}
+.catalog-app .dialog-scroll::-webkit-scrollbar{width:8px}
+.catalog-app .dialog-scroll::-webkit-scrollbar-track{background:transparent;margin-block:14px}
+.catalog-app .dialog-scroll::-webkit-scrollbar-thumb{background:#9aabb8;border-radius:10px;border:2px solid transparent;background-clip:padding-box}
+.catalog-app .dialog-scroll::-webkit-scrollbar-button{display:none;width:0;height:0}
+}
+@media screen and (max-width:700px){
+.catalog-app .workshop-detail>.dialog-scroll{max-height:calc(100dvh - 24px)}
+.catalog-app .inquiry-dialog>.dialog-scroll{padding:16px;max-height:92dvh}
+}

@@ -229,3 +229,7 @@
 .catalog-app .selection-bar .selection-buttons{flex:1;justify-content:flex-end}
 .catalog-app .selection-bar .btn{min-height:44px}
 }
+
+/* Restore icon-only selection with native hover label. */
+@media screen{.catalog-app .card-actions{flex-wrap:nowrap}.catalog-app .card-actions .detail-btn{flex:1;min-width:0;width:auto}.catalog-app .card-actions .choose-btn{flex:0 0 34px;width:34px;min-width:34px;font-size:19px;padding:4px;line-height:1}}
+@media screen and (max-width:700px){.catalog-app .card-actions .choose-btn{flex-basis:44px;width:44px;min-width:44px;min-height:44px}.catalog-app .card-actions .detail-btn{flex:1;min-width:0;min-height:44px}}

@@ -1,0 +1,54 @@
+name: Refresh catalog image library
+on:
+  push:
+    branches: [refresh-catalog-images-20261117]
+    paths: ['.github/workflows/refresh-catalog-images.yml']
+permissions:
+  contents: write
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install Pillow==12.1.1
+      - run: python space-workshops/tools/convert_images.py
+      - name: Validate coverage and refresh cover copies
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image, ImageOps
+          import json, hashlib
+          root=Path('space-workshops/images')
+          assets=Path('workshops/assets')
+          inv=json.loads((root/'inventory.json').read_text())
+          assert len(inv)==70, len(inv)
+          expected={str(i) for i in range(1000,1041)}|{'1015-1','1015-2','1039-1','1039-2'}
+          assert expected <= {r['filename'][:-5] for r in inv if r['review_status']=='pending_approval'}
+          assert all((root/r['filename']).is_file() for r in inv)
+          for name in ('stem','space'):
+              src=root/f'catalog-{name}-cover.png'
+              dst=assets/src.name
+              dst.write_bytes(src.read_bytes())
+              im=ImageOps.exif_transpose(Image.open(src)).convert('RGBA')
+              bg=Image.new('RGBA',im.size,'white')
+              bg.alpha_composite(im)
+              im=bg.convert('RGB')
+              im.thumbnail((1200,630),Image.Resampling.LANCZOS)
+              for ext,fmt in [('webp','WEBP'),('jpg','JPEG')]:
+                  out=dst.with_suffix('.'+ext)
+                  im.save(out,fmt,quality=90,optimize=True)
+                  with Image.open(out) as check:
+                      check.load()
+                      assert check.size==im.size and check.format==fmt
+              print(name, im.size)
+          print('Numbered images:',len(inv),'stages:',sum('.' in r['filename'][:-5] for r in inv))
+          PY
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add space-workshops/images workshops/assets/catalog-*-cover.*
+          git commit -m "Rebuild all current catalog image assets and verified inventory"
+          git push origin HEAD:refresh-catalog-images-20261117

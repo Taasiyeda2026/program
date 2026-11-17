@@ -363,3 +363,16 @@
 @media screen and (max-width:1000px){.catalog-app .header-inner:has(.header-selection:not([hidden])){height:auto;min-height:56px;flex-wrap:wrap;padding-block:5px;gap:5px}.catalog-app .header-selection{margin-inline-start:auto}}
 @media screen and (max-width:530px){.catalog-app .header-selection{font-size:10px;padding:5px 8px}.catalog-app .back-top{width:34px;height:34px;inset-inline-end:10px}.catalog-app:has(.selection-bar:not([hidden])) .back-top{bottom:155px}}
 @media (prefers-reduced-motion:reduce){.catalog-app .workshop-card{transition:none}.catalog-app .workshop-card:hover{transform:none}}
+
+/* Wide 5:2 hero artwork: fill the left half without cropping or distortion. */
+@media screen{
+.catalog-app .hero .catalog-cover-art{max-width:none;width:100%;height:auto;min-width:0}
+.catalog-app .hero .catalog-cover{width:100%;height:auto;aspect-ratio:5/2;object-fit:contain;border-radius:12px}
+}
+@media screen and (min-width:701px){
+.catalog-app .hero-content,.preview-fullscreen .admin-preview-root .hero-content{grid-template-columns:minmax(0,1.12fr) minmax(0,1fr);gap:20px;min-height:0;padding:14px 19px}
+}
+@media screen and (max-width:700px){
+.catalog-app .hero-content,.preview-fullscreen .admin-preview-root .hero-content{grid-template-columns:minmax(0,1fr);gap:12px;padding:13px 14px 15px}
+.catalog-app .hero .catalog-cover-art{max-width:100%;width:100%}
+}

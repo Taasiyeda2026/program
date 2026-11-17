@@ -376,3 +376,14 @@
 .catalog-app .hero-content,.preview-fullscreen .admin-preview-root .hero-content{grid-template-columns:minmax(0,1fr);gap:12px;padding:13px 14px 15px}
 .catalog-app .hero .catalog-cover-art{max-width:100%;width:100%}
 }
+
+/* Reference layout: heading first, introduction next, English disciplines below. */
+@media screen{
+.catalog-app .hero .hero-copy{min-width:0;align-self:center}
+.catalog-app .hero .eyebrow{display:block;margin:20px 0 0;text-align:center;direction:ltr;font-size:14px;font-weight:750;line-height:1.4;letter-spacing:.05px;color:#172332}
+.catalog-app .hero .eyebrow::before,.catalog-app .hero .eyebrow::after{display:none;content:none}
+.catalog-app .hero h1{margin-top:0;margin-bottom:7px}
+.catalog-app.space-theme .hero .eyebrow{color:#a9dfff}
+}
+@media screen and (min-width:1001px){.catalog-app .hero h1,.preview-fullscreen .admin-preview-root .hero h1{font-size:32px}.catalog-app .hero .eyebrow{font-size:14px;margin-top:21px}}
+@media screen and (max-width:700px){.catalog-app .hero .eyebrow{font-size:11px;margin-top:12px;line-height:1.5}}

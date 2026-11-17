@@ -155,3 +155,77 @@
 .card-meta .card-price{flex-basis:100%;margin-inline-start:0;white-space:normal;line-height:1.45;overflow-wrap:anywhere}
 .dialog-facts .dialog-price{flex-basis:100%;display:block;white-space:normal;line-height:1.55;color:#214765;font-weight:700}
 .dialog-facts .dialog-price::before{display:none}
+
+/* Approved compact refinement; retain original page and hero backgrounds. */
+@media screen {
+.catalog-app .header-inner{height:56px}
+.catalog-app .hero{margin-block:14px 12px;border-radius:19px}
+.catalog-app .hero-content,.preview-fullscreen .admin-preview-root .hero-content{padding:15px 23px 19px;gap:20px}
+.catalog-app .hero .catalog-cover-art{max-width:310px}
+.catalog-app .hero h1,.preview-fullscreen .admin-preview-root .hero h1{font-size:clamp(24px,2.5vw,32px);margin-bottom:6px}
+.catalog-app .hero-facts{margin-top:8px}
+.catalog-app .hero-facts span{padding:4px 9px}
+.catalog-app .results-head{margin:12px 0 9px}
+.catalog-app .results-head h2{font-size:19px}
+.catalog-app .workshop-card .card-media,.catalog-app.space-theme .workshop-card .card-media{aspect-ratio:1.5;max-height:175px;padding:5px 12px}
+.catalog-app .workshop-card .card-media img{max-height:165px}
+.catalog-app .card-body,.preview-fullscreen .admin-preview-root .card-body{padding:9px 11px 10px;gap:3px}
+.catalog-app .card-title{font-size:16px}
+.catalog-app .card-summary{line-height:1.5;margin-bottom:3px;display:block;overflow:visible}
+.catalog-app .card-meta{padding-top:6px;row-gap:3px}
+.catalog-app .card-price{display:flex;flex-direction:column;gap:2px;align-items:flex-start;color:#214765;line-height:1.35}
+.catalog-app .price-base{font-size:12px;font-weight:750}
+.catalog-app .price-extra{font-size:11px;color:#60778d;font-weight:500}
+.catalog-app .card-actions{gap:5px;align-items:stretch}
+.catalog-app .card-actions .detail-btn{font-size:11px;min-height:33px;padding:5px 4px}
+.catalog-app .card-actions .choose-btn{width:auto;min-width:0;flex:0 0 auto;padding:5px 8px;min-height:33px;font-size:11px;font-weight:750;line-height:1.3;white-space:nowrap}
+.catalog-app .card-actions .choose-btn[aria-pressed=true]{background:#dbeee7;color:#245c47;border-color:#93bcaa}
+.catalog-app .workshop-detail{width:min(860px,calc(100% - 32px));max-height:calc(100dvh - 36px);border-radius:18px;padding:0}
+.catalog-app .workshop-detail .dialog-top{padding:14px 21px 11px}
+.catalog-app .workshop-detail .dialog-title{font-size:23px;margin-bottom:2px;letter-spacing:-.4px}
+.catalog-app .workshop-detail .dialog-subtitle{font-size:13px}
+.catalog-app .workshop-detail .dialog-facts{font-size:12px;margin-top:6px;gap:3px 0}
+.catalog-app .workshop-detail .dialog-price{display:flex;flex-direction:row;align-items:baseline;flex-wrap:wrap;gap:4px 12px;flex-basis:100%}
+.catalog-app .workshop-detail .dialog-price .price-base{font-size:13px}
+.catalog-app .workshop-detail .dialog-price .price-extra{font-size:12px}
+.catalog-app .workshop-detail .dialog-price span::before{display:none}
+.catalog-app .workshop-detail .dialog-content{padding:14px 20px 17px}
+.catalog-app .workshop-detail .dialog-grid{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:20px}
+.catalog-app .workshop-detail .gallery-main{aspect-ratio:1.12;max-height:290px;padding:6px;background:#fff;border:1px solid #e3e8ec;box-shadow:none;border-radius:11px}
+.catalog-app .workshop-detail .gallery-main img{max-height:278px;min-height:0;object-fit:contain}
+.catalog-app .workshop-detail .thumbs{padding-block:6px;gap:6px}
+.catalog-app .workshop-detail .age-selector{margin-bottom:8px}
+.catalog-app .workshop-detail .age-selector button{padding:6px;font-size:12px}
+.catalog-app .workshop-detail .section-block{background:none;border:0;border-bottom:1px solid #e1e7eb;border-radius:0;box-shadow:none;padding:8px 0 9px;margin:0}
+.catalog-app .workshop-detail .section-block:last-child{border-bottom:0}
+.catalog-app .workshop-detail .section-block h3{font-size:14px;margin-bottom:3px}
+.catalog-app .workshop-detail .section-block p{font-size:13px;line-height:1.55}
+.catalog-app .workshop-detail .dialog-actions{margin-top:8px}
+.catalog-app .selection-bar{width:min(620px,calc(100% - 24px));padding:10px 14px;border-radius:14px;border-color:#a9bdce;background:#fff;box-shadow:0 6px 28px #123b6240}
+.catalog-app .selection-bar strong{font-size:14px;color:#173d60}
+.catalog-app .selection-bar small{font-size:11px;line-height:1.45}
+.catalog-app .selection-bar .btn-primary{min-height:38px;font-size:12px}
+.catalog-app:has(.selection-bar:not([hidden])) .catalog-main{padding-bottom:110px}
+}
+@media screen and (max-width:700px){
+.catalog-app .hero-content,.preview-fullscreen .admin-preview-root .hero-content{padding:13px 14px 16px;gap:10px}
+.catalog-app .hero .catalog-cover-art{max-width:290px}
+.catalog-app .hero h1,.preview-fullscreen .admin-preview-root .hero h1{font-size:24px}
+.catalog-app .workshop-card .card-media,.catalog-app.space-theme .workshop-card .card-media{aspect-ratio:1.3;max-height:155px;padding:4px}
+.catalog-app .workshop-card .card-media img{max-height:145px}
+.catalog-app .card-body,.preview-fullscreen .admin-preview-root .card-body{padding:8px}
+.catalog-app .card-title{font-size:15px}
+.catalog-app .card-actions{flex-wrap:wrap}
+.catalog-app .card-actions .detail-btn,.catalog-app .card-actions .choose-btn{min-height:44px;flex:1 1 100%;font-size:11px;width:100%;white-space:normal}
+.catalog-app .workshop-detail{width:calc(100% - 18px);max-height:calc(100dvh - 20px)}
+.catalog-app .workshop-detail .dialog-grid{grid-template-columns:1fr;gap:10px}
+.catalog-app .workshop-detail .dialog-top{padding:13px 14px 10px}
+.catalog-app .workshop-detail .dialog-content{padding:10px 14px 14px}
+.catalog-app .workshop-detail .gallery-main{max-height:215px}
+.catalog-app .workshop-detail .gallery-main img{max-height:203px}
+.catalog-app .workshop-detail .dialog-title{font-size:21px}
+.catalog-app .workshop-detail .age-selector button{min-height:44px}
+.catalog-app .selection-bar{flex-wrap:wrap;gap:7px;padding:9px 11px}
+.catalog-app .selection-bar .selection-buttons{flex:1;justify-content:flex-end}
+.catalog-app .selection-bar .btn{min-height:44px}
+}

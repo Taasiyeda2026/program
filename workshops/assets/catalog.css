@@ -41,3 +41,26 @@
 /* Authentic catalog artwork: preserve full cover at every screen width. */
 .hero .catalog-cover-art{height:auto;min-width:0;position:relative;inset:auto;width:100%;opacity:1;z-index:1;align-self:center}.catalog-cover{display:block;width:100%;height:auto;object-fit:contain;border-radius:17px;border:1px solid #ffffffb0;box-shadow:0 12px 30px #0b244b30}.space-theme .catalog-cover{border-color:#b9d5e57a;box-shadow:0 12px 30px #020b1b60}
 @media screen and (max-width:530px){.hero-content,.admin-preview-root .hero-content,.preview-fullscreen .admin-preview-root .hero-content{grid-template-columns:minmax(0,1fr);gap:14px}.hero .catalog-cover-art{height:auto;width:100%;position:relative;inset:auto;opacity:1;z-index:1}.hero h1,.space-theme .hero h1{max-width:100%}.catalog-cover{border-radius:11px}}
+
+/* Product photography: one continuous white canvas, no inset photo rectangle.
+   Keep image proportions intact and use the same square layout at all widths. */
+.workshop-card .card-media,.space-theme .workshop-card .card-media{
+ display:grid;place-items:center;position:relative;box-sizing:border-box;
+ margin:0;width:100%;height:auto;aspect-ratio:1/1;min-width:0;
+ padding:0;overflow:hidden;align-self:auto;border:0;
+ border-bottom:1px solid #e9e7e2;border-radius:18px 18px 0 0;
+ background:#fff;box-shadow:none;
+}
+.workshop-card .card-media img{
+ display:block;position:static;transform:none;width:100%;height:100%;
+ max-width:100%;max-height:100%;object-fit:contain;object-position:center;
+ mix-blend-mode:normal;filter:none;border-radius:0;
+}
+.workshop-card .card-media .no-photo{min-height:0;padding:12px}
+.preview-fullscreen .admin-preview-root .workshop-card .card-media img{object-fit:contain}
+@media screen and (max-width:530px){
+ .workshop-card .card-media,.space-theme .workshop-card .card-media{
+  margin:0;width:100%;height:auto;aspect-ratio:1/1;padding:0;border-radius:14px 14px 0 0;
+ }
+ .workshop-card .card-media img{max-height:100%;transform:none}
+}

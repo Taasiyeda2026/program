@@ -1,0 +1,812 @@
+[
+  {
+    "filename": "1000.webp",
+    "crop": [
+      3,
+      12,
+      512,
+      507
+    ],
+    "source_size": [
+      512,
+      512
+    ],
+    "output_size": [
+      512,
+      512
+    ],
+    "bytes": 45520
+  },
+  {
+    "filename": "1001.webp",
+    "crop": [
+      3,
+      104,
+      508,
+      496
+    ],
+    "source_size": [
+      512,
+      512
+    ],
+    "output_size": [
+      512,
+      512
+    ],
+    "bytes": 22852
+  },
+  {
+    "filename": "1002.webp",
+    "crop": [
+      20,
+      24,
+      485,
+      489
+    ],
+    "source_size": [
+      512,
+      512
+    ],
+    "output_size": [
+      512,
+      512
+    ],
+    "bytes": 33624
+  },
+  {
+    "filename": "1003.webp",
+    "crop": [
+      66,
+      17,
+      441,
+      496
+    ],
+    "source_size": [
+      512,
+      512
+    ],
+    "output_size": [
+      512,
+      512
+    ],
+    "bytes": 25416
+  },
+  {
+    "filename": "1004.webp",
+    "crop": [
+      12,
+      66,
+      504,
+      437
+    ],
+    "source_size": [
+      512,
+      512
+    ],
+    "output_size": [
+      512,
+      512
+    ],
+    "bytes": 18168
+  },
+  {
+    "filename": "1005.webp",
+    "crop": [
+      30,
+      84,
+      484,
+      442
+    ],
+    "source_size": [
+      512,
+      512
+    ],
+    "output_size": [
+      512,
+      512
+    ],
+    "bytes": 22908
+  },
+  {
+    "filename": "1006.webp",
+    "crop": [
+      29,
+      53,
+      504,
+      469
+    ],
+    "source_size": [
+      512,
+      512
+    ],
+    "output_size": [
+      512,
+      512
+    ],
+    "bytes": 32258
+  },
+  {
+    "filename": "1007.webp",
+    "crop": [
+      62,
+      54,
+      456,
+      475
+    ],
+    "source_size": [
+      512,
+      512
+    ],
+    "output_size": [
+      512,
+      512
+    ],
+    "bytes": 36020
+  },
+  {
+    "filename": "1008.webp",
+    "crop": [
+      8,
+      86,
+      505,
+      451
+    ],
+    "source_size": [
+      512,
+      512
+    ],
+    "output_size": [
+      512,
+      512
+    ],
+    "bytes": 29824
+  },
+  {
+    "filename": "1009.webp",
+    "crop": [
+      16,
+      57,
+      498,
+      476
+    ],
+    "source_size": [
+      512,
+      512
+    ],
+    "output_size": [
+      512,
+      512
+    ],
+    "bytes": 40886
+  },
+  {
+    "filename": "1010.webp",
+    "crop": [
+      4,
+      46,
+      505,
+      470
+    ],
+    "source_size": [
+      512,
+      512
+    ],
+    "output_size": [
+      512,
+      512
+    ],
+    "bytes": 27876
+  },
+  {
+    "filename": "1011.webp",
+    "crop": [
+      107,
+      9,
+      404,
+      477
+    ],
+    "source_size": [
+      512,
+      512
+    ],
+    "output_size": [
+      512,
+      512
+    ],
+    "bytes": 21756
+  },
+  {
+    "filename": "1012.webp",
+    "crop": [
+      28,
+      20,
+      484,
+      508
+    ],
+    "source_size": [
+      512,
+      512
+    ],
+    "output_size": [
+      512,
+      512
+    ],
+    "bytes": 31134
+  },
+  {
+    "filename": "1013.webp",
+    "crop": [
+      52,
+      40,
+      471,
+      499
+    ],
+    "source_size": [
+      512,
+      512
+    ],
+    "output_size": [
+      512,
+      512
+    ],
+    "bytes": 8524
+  },
+  {
+    "filename": "1014.webp",
+    "crop": [
+      38,
+      41,
+      447,
+      512
+    ],
+    "source_size": [
+      512,
+      512
+    ],
+    "output_size": [
+      512,
+      512
+    ],
+    "bytes": 18754
+  },
+  {
+    "filename": "1015-1.webp",
+    "crop": [
+      26,
+      29,
+      487,
+      407
+    ],
+    "source_size": [
+      512,
+      512
+    ],
+    "output_size": [
+      512,
+      512
+    ],
+    "bytes": 32476
+  },
+  {
+    "filename": "1015-2.webp",
+    "crop": [
+      44,
+      80,
+      484,
+      448
+    ],
+    "source_size": [
+      512,
+      512
+    ],
+    "output_size": [
+      512,
+      512
+    ],
+    "bytes": 22300
+  },
+  {
+    "filename": "1015.webp",
+    "crop": [
+      12,
+      54,
+      512,
+      434
+    ],
+    "source_size": [
+      512,
+      512
+    ],
+    "output_size": [
+      512,
+      512
+    ],
+    "bytes": 28164
+  },
+  {
+    "filename": "1016.webp",
+    "crop": [
+      100,
+      1,
+      412,
+      499
+    ],
+    "source_size": [
+      512,
+      512
+    ],
+    "output_size": [
+      512,
+      512
+    ],
+    "bytes": 9612
+  },
+  {
+    "filename": "1017.webp",
+    "crop": [
+      37,
+      67,
+      479,
+      475
+    ],
+    "source_size": [
+      512,
+      512
+    ],
+    "output_size": [
+      512,
+      512
+    ],
+    "bytes": 31276
+  },
+  {
+    "filename": "1018.webp",
+    "crop": [
+      59,
+      0,
+      447,
+      480
+    ],
+    "source_size": [
+      512,
+      512
+    ],
+    "output_size": [
+      512,
+      512
+    ],
+    "bytes": 34272
+  },
+  {
+    "filename": "1019.webp",
+    "crop": [
+      56,
+      72,
+      472,
+      462
+    ],
+    "source_size": [
+      512,
+      512
+    ],
+    "output_size": [
+      512,
+      512
+    ],
+    "bytes": 17630
+  },
+  {
+    "filename": "1020.webp",
+    "crop": [
+      26,
+      21,
+      490,
+      497
+    ],
+    "source_size": [
+      512,
+      512
+    ],
+    "output_size": [
+      512,
+      512
+    ],
+    "bytes": 35418
+  },
+  {
+    "filename": "1021.webp",
+    "crop": [
+      22,
+      18,
+      496,
+      509
+    ],
+    "source_size": [
+      512,
+      512
+    ],
+    "output_size": [
+      512,
+      512
+    ],
+    "bytes": 32130
+  },
+  {
+    "filename": "1022.webp",
+    "crop": [
+      26,
+      101,
+      486,
+      456
+    ],
+    "source_size": [
+      512,
+      512
+    ],
+    "output_size": [
+      512,
+      512
+    ],
+    "bytes": 26184
+  },
+  {
+    "filename": "1023.webp",
+    "crop": [
+      11,
+      38,
+      498,
+      482
+    ],
+    "source_size": [
+      512,
+      512
+    ],
+    "output_size": [
+      512,
+      512
+    ],
+    "bytes": 65590
+  },
+  {
+    "filename": "1024.webp",
+    "crop": [
+      61,
+      34,
+      449,
+      490
+    ],
+    "source_size": [
+      512,
+      512
+    ],
+    "output_size": [
+      512,
+      512
+    ],
+    "bytes": 36898
+  },
+  {
+    "filename": "1025.webp",
+    "crop": [
+      14,
+      29,
+      504,
+      486
+    ],
+    "source_size": [
+      512,
+      512
+    ],
+    "output_size": [
+      512,
+      512
+    ],
+    "bytes": 23010
+  },
+  {
+    "filename": "1026.webp",
+    "crop": [
+      0,
+      149,
+      512,
+      390
+    ],
+    "source_size": [
+      512,
+      512
+    ],
+    "output_size": [
+      512,
+      512
+    ],
+    "bytes": 15564
+  },
+  {
+    "filename": "1027.webp",
+    "crop": [
+      24,
+      2,
+      494,
+      512
+    ],
+    "source_size": [
+      512,
+      512
+    ],
+    "output_size": [
+      512,
+      512
+    ],
+    "bytes": 56058
+  },
+  {
+    "filename": "1028.webp",
+    "crop": [
+      22,
+      1,
+      503,
+      512
+    ],
+    "source_size": [
+      512,
+      512
+    ],
+    "output_size": [
+      512,
+      512
+    ],
+    "bytes": 50508
+  },
+  {
+    "filename": "1029.webp",
+    "crop": [
+      0,
+      0,
+      512,
+      512
+    ],
+    "source_size": [
+      512,
+      512
+    ],
+    "output_size": [
+      512,
+      512
+    ],
+    "bytes": 25622
+  },
+  {
+    "filename": "1030.webp",
+    "crop": [
+      59,
+      31,
+      460,
+      505
+    ],
+    "source_size": [
+      512,
+      512
+    ],
+    "output_size": [
+      512,
+      512
+    ],
+    "bytes": 18608
+  },
+  {
+    "filename": "1031.webp",
+    "crop": [
+      0,
+      28,
+      512,
+      511
+    ],
+    "source_size": [
+      512,
+      512
+    ],
+    "output_size": [
+      512,
+      512
+    ],
+    "bytes": 27768
+  },
+  {
+    "filename": "1032.webp",
+    "crop": [
+      17,
+      56,
+      512,
+      482
+    ],
+    "source_size": [
+      512,
+      512
+    ],
+    "output_size": [
+      512,
+      512
+    ],
+    "bytes": 30020
+  },
+  {
+    "filename": "1033.webp",
+    "crop": [
+      21,
+      27,
+      511,
+      496
+    ],
+    "source_size": [
+      512,
+      512
+    ],
+    "output_size": [
+      512,
+      512
+    ],
+    "bytes": 19830
+  },
+  {
+    "filename": "1034.webp",
+    "crop": [
+      43,
+      0,
+      461,
+      512
+    ],
+    "source_size": [
+      512,
+      512
+    ],
+    "output_size": [
+      512,
+      512
+    ],
+    "bytes": 36322
+  },
+  {
+    "filename": "1035.webp",
+    "crop": [
+      25,
+      13,
+      512,
+      512
+    ],
+    "source_size": [
+      512,
+      512
+    ],
+    "output_size": [
+      512,
+      512
+    ],
+    "bytes": 43664
+  },
+  {
+    "filename": "1036.webp",
+    "crop": [
+      94,
+      12,
+      376,
+      499
+    ],
+    "source_size": [
+      512,
+      512
+    ],
+    "output_size": [
+      512,
+      512
+    ],
+    "bytes": 12374
+  },
+  {
+    "filename": "1037.webp",
+    "crop": [
+      0,
+      0,
+      512,
+      512
+    ],
+    "source_size": [
+      512,
+      512
+    ],
+    "output_size": [
+      512,
+      512
+    ],
+    "bytes": 33716
+  },
+  {
+    "filename": "1038.webp",
+    "crop": [
+      35,
+      4,
+      473,
+      512
+    ],
+    "source_size": [
+      512,
+      512
+    ],
+    "output_size": [
+      512,
+      512
+    ],
+    "bytes": 25150
+  },
+  {
+    "filename": "1039-1.webp",
+    "crop": [
+      13,
+      84,
+      510,
+      439
+    ],
+    "source_size": [
+      512,
+      512
+    ],
+    "output_size": [
+      512,
+      512
+    ],
+    "bytes": 24146
+  },
+  {
+    "filename": "1039-2.webp",
+    "crop": [
+      5,
+      63,
+      508,
+      416
+    ],
+    "source_size": [
+      512,
+      512
+    ],
+    "output_size": [
+      512,
+      512
+    ],
+    "bytes": 24324
+  },
+  {
+    "filename": "1039.webp",
+    "crop": [
+      19,
+      0,
+      488,
+      511
+    ],
+    "source_size": [
+      512,
+      512
+    ],
+    "output_size": [
+      512,
+      512
+    ],
+    "bytes": 37638
+  },
+  {
+    "filename": "1040.webp",
+    "crop": [
+      15,
+      35,
+      500,
+      498
+    ],
+    "source_size": [
+      512,
+      512
+    ],
+    "output_size": [
+      512,
+      512
+    ],
+    "bytes": 57910
+  }
+]

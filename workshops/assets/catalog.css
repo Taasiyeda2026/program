@@ -305,3 +305,6 @@
 .catalog-app .workshop-detail .dialog-actions .btn-primary{font-size:11px;font-weight:700;padding:6px 11px;min-height:30px;border-radius:9px;box-shadow:0 2px 6px #19395720}
 }
 @media screen and (max-width:700px){.catalog-app .workshop-detail .dialog-actions .btn-primary{font-size:12px;min-height:44px;flex:0 1 auto;padding:7px 12px}}
+
+/* Compact, centered catalog footer. */
+.catalog-app>.footer{padding:0;min-height:0}.catalog-app>.footer .wrap{display:flex;justify-content:center;align-items:center;text-align:center;padding:8px 0;min-height:0;gap:0;font-size:11px;line-height:1.4}.catalog-app>.footer .wrap span{margin:0}

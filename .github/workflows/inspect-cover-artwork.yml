@@ -1,0 +1,28 @@
+name: Inspect catalog covers
+on:
+  push:
+    branches: [verify-cover-artwork]
+    paths: ['.github/workflows/inspect-cover-artwork.yml']
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install Pillow==12.1.1
+      - run: |
+          python - <<'PY'
+          from PIL import Image
+          from pathlib import Path
+          import io,base64
+          for name in ('stem','space'):
+              p=Path(f'workshops/assets/catalog-{name}-cover.jpg')
+              im=Image.open(p).convert('RGB')
+              im.thumbnail((480,280))
+              b=io.BytesIO();im.save(b,'JPEG',quality=65)
+              print('ART_'+name+'='+base64.b64encode(b.getvalue()).decode())
+          PY

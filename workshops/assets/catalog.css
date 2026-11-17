@@ -289,3 +289,19 @@
 .catalog-app .workshop-detail .detail-pricing{margin-top:10px}
 .catalog-app .workshop-detail .detail-pricing .dialog-price{padding:6px 9px;gap:3px 8px}
 }
+
+/* Livelier detail view: category accents with restrained, readable surfaces. */
+@media screen{
+.catalog-app .workshop-detail{--detail-accent:#247db3;border-top:4px solid var(--detail-accent);background:linear-gradient(145deg,#fffefa 0%,#f8fbfd 55%,color-mix(in srgb,var(--detail-accent) 7%,#f4f8fb) 100%)}
+.catalog-app .workshop-detail .dialog-top{background:radial-gradient(ellipse at 95% 0%,color-mix(in srgb,var(--detail-accent) 17%,transparent),transparent 58%),radial-gradient(ellipse at 0% 100%,#e1eff9,transparent 65%),linear-gradient(125deg,#fffaf0,#fff);border-bottom-color:color-mix(in srgb,var(--detail-accent) 20%,#dce5eb)}
+.catalog-app .workshop-detail .dialog-content{background:transparent}
+.catalog-app .workshop-detail .dialog-facts span:first-child{color:#254b69;font-weight:750}
+.catalog-app .workshop-detail .dialog-facts span:first-child::before{content:'';display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--detail-accent);margin-inline-end:7px;box-shadow:0 0 0 3px color-mix(in srgb,var(--detail-accent) 14%,transparent)}
+.catalog-app .workshop-detail .section-block h3{position:relative;padding-inline-start:11px;color:#1e4565}
+.catalog-app .workshop-detail .section-block h3::before{content:'';position:absolute;inset-inline-start:0;top:3px;bottom:3px;width:3px;border-radius:3px;background:var(--detail-accent)}
+.catalog-app .workshop-detail .section-block{border-bottom-color:color-mix(in srgb,var(--detail-accent) 12%,#e1e7eb)}
+.catalog-app .workshop-detail .gallery-main{border-color:color-mix(in srgb,var(--detail-accent) 22%,#e3e8ec);box-shadow:0 3px 12px color-mix(in srgb,var(--detail-accent) 7%,transparent)}
+.catalog-app .workshop-detail .detail-pricing .dialog-price{background:color-mix(in srgb,var(--detail-accent) 5%,#fffdf7);border-radius:6px}
+.catalog-app .workshop-detail .dialog-actions .btn-primary{font-size:11px;font-weight:700;padding:6px 11px;min-height:30px;border-radius:9px;box-shadow:0 2px 6px #19395720}
+}
+@media screen and (max-width:700px){.catalog-app .workshop-detail .dialog-actions .btn-primary{font-size:12px;min-height:44px;flex:0 1 auto;padding:7px 12px}}

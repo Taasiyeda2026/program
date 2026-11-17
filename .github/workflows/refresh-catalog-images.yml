@@ -1,7 +1,7 @@
 name: Refresh catalog image library
 on:
   push:
-    branches: [refresh-catalog-images-20261117]
+    branches: [refresh-catalog-images-final-20261117]
     paths: ['.github/workflows/refresh-catalog-images.yml']
 permissions:
   contents: write
@@ -24,7 +24,7 @@ jobs:
           root=Path('space-workshops/images')
           assets=Path('workshops/assets')
           inv=json.loads((root/'inventory.json').read_text())
-          assert len(inv)==70, len(inv)
+          assert len(inv)==71, len(inv)
           expected={str(i) for i in range(1000,1041)}|{'1015-1','1015-2','1039-1','1039-2'}
           assert expected <= {r['filename'][:-5] for r in inv if r['review_status']=='pending_approval'}
           assert all((root/r['filename']).is_file() for r in inv)
@@ -51,4 +51,4 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add space-workshops/images workshops/assets/catalog-*-cover.*
           git commit -m "Rebuild all current catalog image assets and verified inventory"
-          git push origin HEAD:refresh-catalog-images-20261117
+          git push origin HEAD:refresh-catalog-images-final-20261117

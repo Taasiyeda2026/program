@@ -68,3 +68,6 @@
 @media screen and (max-width:530px){.concept{font-size:12px}.concept+.concept::before{margin-inline:6px}}
 
 @media screen and (max-width:530px){.dialog-facts{font-size:12px;line-height:1.65}.dialog-facts span+span::before{margin-inline:7px}}
+
+/* Choose the product model before viewing its photo gallery. */
+.model-picker{margin:0 0 12px;min-width:0}.model-picker .selector-label{margin:0 0 7px}.model-picker .model-selector{padding:2px 1px 4px}.model-picker .model-option{min-height:44px}@media screen and (max-width:530px){.model-picker{margin-bottom:9px}.model-picker .model-option{min-width:0}.model-picker .selector-label{font-size:12px}}

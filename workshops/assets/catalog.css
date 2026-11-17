@@ -96,3 +96,57 @@
 @media screen and (max-width:530px){.inquiry-dialog{width:calc(100% - 18px);padding:16px;max-height:92dvh}.inquiry-fields{grid-template-columns:1fr;gap:10px}.inquiry-fields input,.inquiry-dialog .inquiry-fields textarea{font-size:16px}.inquiry-item-options select{font-size:13px;min-height:36px}.inquiry-dialog .inquiry-item strong{font-size:13px}.inquiry-form .dialog-actions .btn{width:100%}.inquiry-admin-card summary{flex-direction:column;gap:6px}}
 
 .admin-catalog-covers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:14px 0 24px}.admin-catalog-cover{overflow:hidden;border:1px solid #d7e2eb;border-radius:14px;background:#fff}.admin-catalog-cover>img{display:block;width:100%;aspect-ratio:1200/630;object-fit:contain;background:#fff}.admin-catalog-cover-info{padding:12px}.admin-catalog-cover-info h2{font-size:16px;margin:0 0 6px}.admin-catalog-cover-info p{font-size:12px;color:#536e83;margin-bottom:8px}@media(max-width:650px){.admin-catalog-covers{grid-template-columns:1fr}}
+
+/* Compact catalog rhythm: constrain the page rather than scaling the browser.
+   Public, shared and fullscreen preview use the same proportions. */
+@media screen{
+.catalog-app>.site-header .wrap,.catalog-app>.catalog-main>.wrap,.catalog-app>.footer .wrap{width:min(1080px,calc(100% - 64px))}
+.catalog-app .header-inner{height:64px}
+.catalog-app .hero{min-height:0;margin-block:18px 16px;border-radius:22px}
+.catalog-app .hero-content,.preview-fullscreen .admin-preview-root .hero-content{min-height:0;padding:22px 28px 29px;gap:22px;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr)}
+.catalog-app .hero h1,.preview-fullscreen .admin-preview-root .hero h1{font-size:clamp(25px,2.6vw,36px);letter-spacing:-.8px;line-height:1.18;margin-bottom:8px}
+.catalog-app .hero-intro{font-size:14px;line-height:1.6}
+.catalog-app .hero-facts{margin-top:10px}
+.catalog-app .hero .catalog-cover-art{height:auto;max-width:380px;justify-self:center}
+.catalog-app .filters{padding:8px 10px;gap:8px;margin-bottom:10px;border-radius:13px;box-shadow:0 3px 10px #2849610c}
+.catalog-app .cards-grid{gap:16px}
+.catalog-app .workshop-card{border-radius:15px;box-shadow:0 4px 13px #1c355312,0 1px 3px #2639510b}
+.catalog-app .workshop-card::before{height:3px}
+.catalog-app .workshop-card .card-media,.catalog-app.space-theme .workshop-card .card-media{aspect-ratio:1.35/1;height:auto;min-height:0;max-height:205px;padding:5px 12px;border-radius:14px 14px 0 0}
+.catalog-app .workshop-card .card-media img{width:100%;height:100%;max-width:100%;max-height:195px;object-fit:contain;min-height:0;position:static;transform:none}
+.catalog-app .card-body,.preview-fullscreen .admin-preview-root .card-body{gap:4px;padding:10px 12px 12px}
+.catalog-app .card-title{font-size:17px;line-height:1.3;letter-spacing:-.3px;min-height:0}
+.catalog-app .card-subtitle{font-size:12px;min-height:0}
+.catalog-app .card-summary{font-size:12px;line-height:1.55;min-height:0;-webkit-line-clamp:3;margin-bottom:5px}
+.catalog-app .card-meta{font-size:11px;padding-top:7px;gap:4px 7px}
+.catalog-app .card-actions{margin-top:3px}
+.catalog-app .card-actions .detail-btn{min-height:34px;padding:6px;font-size:12px}
+.catalog-app .card-actions .choose-btn{min-height:34px;width:34px;min-width:34px;font-size:17px}
+.admin-preview-root .catalog-app>.site-header .wrap,.admin-preview-root .catalog-app>.catalog-main>.wrap,.admin-preview-root .catalog-app>.footer .wrap{width:100%;max-width:1080px}
+.preview-fullscreen .admin-shell{width:min(1140px,calc(100% - 48px))}
+}
+@media screen and (min-width:1001px){
+.catalog-app>.catalog-main .cards-grid,.preview-fullscreen .admin-preview-root .cards-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+.admin-preview-root .catalog-app>.catalog-main .cards-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.preview-fullscreen .admin-preview-root .catalog-app>.catalog-main .cards-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+@media screen and (min-width:701px) and (max-width:1000px){
+.catalog-app>.catalog-main .cards-grid,.preview-fullscreen .admin-preview-root .catalog-app>.catalog-main .cards-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.admin-preview-root .catalog-app>.catalog-main .cards-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media screen and (max-width:700px){
+.catalog-app>.site-header .wrap,.catalog-app>.catalog-main>.wrap,.catalog-app>.footer .wrap{width:calc(100% - 24px)}
+.catalog-app .hero-content,.preview-fullscreen .admin-preview-root .hero-content{grid-template-columns:minmax(0,1fr);padding:16px 16px 20px;gap:12px}
+.catalog-app .hero h1,.preview-fullscreen .admin-preview-root .hero h1{font-size:26px;max-width:100%}
+.catalog-app .hero-intro{font-size:13px}
+.catalog-app>.catalog-main .cards-grid,.admin-preview-root .catalog-app>.catalog-main .cards-grid,.preview-fullscreen .admin-preview-root .catalog-app>.catalog-main .cards-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.catalog-app .workshop-card{display:flex;flex-direction:column;min-height:0;border-radius:13px}
+.catalog-app .workshop-card .card-media,.catalog-app.space-theme .workshop-card .card-media{aspect-ratio:1.18/1;max-height:180px;padding:5px}
+.catalog-app .workshop-card .card-media img{max-height:170px}
+.catalog-app .card-body,.preview-fullscreen .admin-preview-root .card-body{padding:8px;gap:4px}
+.catalog-app .card-title{font-size:15px}
+.catalog-app .card-summary{font-size:12px;-webkit-line-clamp:3}
+.catalog-app .card-actions .detail-btn{min-height:44px;font-size:11px}
+.catalog-app .card-actions .choose-btn{min-height:44px;width:44px;min-width:44px}
+.preview-fullscreen .admin-shell{width:calc(100% - 16px)}
+}

@@ -240,3 +240,7 @@
 
 /* Optional, link-specific marketing contact; never shown on the default catalog. */
 .catalog-app .marketing-contact{max-width:1080px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;padding:17px 20px;margin:24px auto 0;border:1px solid #d8e2e9;border-radius:14px;background:#ffffffd9;color:#244765}.marketing-contact h2{font-size:15px;margin:0 0 3px}.marketing-heading strong{font-size:14px;font-weight:600}.marketing-links{display:flex;flex-wrap:wrap;gap:10px 18px;font-size:13px}.marketing-links a{color:#275e83;text-decoration:none}.marketing-links a:hover{text-decoration:underline}.marketing-contact[hidden]{display:none!important}@media(max-width:700px){.catalog-app .marketing-contact{gap:8px;padding:13px 15px;margin-top:16px}.marketing-links{font-size:12px;gap:8px 12px}}
+
+/* Catalog cards introduce the workshop; prices belong only in its details. */
+@media screen{.catalog-app .workshop-card .category-line{padding-bottom:7px;margin-bottom:5px;border-bottom:1px solid #dce5eb}.catalog-app .workshop-card .card-title{margin-top:1px}.catalog-app .workshop-card .card-actions{margin-top:auto;padding-top:10px}.catalog-app .workshop-card .card-summary{margin-bottom:4px}}
+@media screen and (max-width:700px){.catalog-app .workshop-card .category-line{padding-bottom:6px;margin-bottom:4px}.catalog-app .workshop-card .card-actions{padding-top:8px}}

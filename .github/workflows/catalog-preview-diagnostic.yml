@@ -1,0 +1,27 @@
+name: Catalog preview live diagnostic
+on:
+  push:
+    branches: [diagnostics/catalog-preview-live]
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Probe public DNS and WhatsApp metadata
+        shell: bash
+        run: |
+          dig +short taasiyeda.work A
+          dig +short taasiyeda.work NS
+          for path in 'stem/esraa/?preview=3' 'stem/esraa/?preview=4' 'stem/?preview=3' 'space/esraa/?preview=3' 'workshops/assets/catalog-stem-cover.jpg?v=2' 'workshops/assets/catalog-space-cover.jpg?v=2'; do
+            echo "=== $path ==="
+            if curl -sSL --max-time 15 -A 'WhatsApp/2.24.7.81' -D /tmp/headers -o /tmp/body "https://taasiyeda.work/$path"; then
+              grep -iE '^HTTP/|^content-type:|^location:' /tmp/headers || true
+              if [[ "$path" != *jpg* ]]; then
+                grep -oE '<meta property="og:[^"]+"[^>]*>' /tmp/body || true
+              else
+                file /tmp/body
+                wc -c /tmp/body
+              fi
+            fi
+          done

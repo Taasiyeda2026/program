@@ -16,5 +16,5 @@ async function imageUrl(path,admin=false){if(typeof path!=='string'||!path)retur
 async function uploadImage(file){return request('/storage/v1/object/'+BUCKET+'/'+encodeURIComponent(file.name),{body:file,raw:true,token:await adminToken(),headers:{'Content-Type':'image/webp','x-upsert':'true'}})}
 const submitInquiry=body=>request('/functions/v1/catalog-inquiry',{body});const listInquiries=async()=>rpc('stem_catalog_list_inquiries',{},await adminToken());
 const marketingAdmin=async()=>rpc('stem_catalog_marketing_admin',{},await adminToken());const marketingContact=token=>rpc('stem_catalog_marketing_contact',{p_token:token});
-window.STEM_API={marketingAdmin,marketingContact,submitInquiry,listInquiries,publicData,adminData,save,publish,login,logout,session,imageUrl,uploadImage,clearImageCache:()=>signed.clear()};
+const createShortShare=async o=>rpc('stem_catalog_create_short_share',{p_catalog:o.catalog,p_ids:o.ids||null,p_age:o.age||'',p_category:o.category||'',p_marketing:o.marketing||null},await adminToken());const resolveShortShare=code=>rpc('stem_catalog_resolve_short_share',{p_code:code});window.STEM_API={createShortShare,resolveShortShare,marketingAdmin,marketingContact,submitInquiry,listInquiries,publicData,adminData,save,publish,login,logout,session,imageUrl,uploadImage,clearImageCache:()=>signed.clear()};
 })();

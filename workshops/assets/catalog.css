@@ -467,3 +467,10 @@
 .catalog-app .workshop-detail>.dialog-scroll{max-height:calc(100dvh - 24px)}
 .catalog-app .inquiry-dialog>.dialog-scroll{padding:16px;max-height:92dvh}
 }
+
+/* Compact stage thumbnails, not full-size image previews. */
+.catalog-app .workshop-detail .thumbs{gap:5px;padding-block:5px;justify-content:flex-start}
+.catalog-app .workshop-detail .thumbs .thumb{flex:0 0 49px;width:49px;min-width:49px;max-width:49px;padding:3px;border-radius:6px}
+.catalog-app .workshop-detail .thumbs .thumb>div{height:28px;width:100%}
+.catalog-app .workshop-detail .thumbs .thumb img{height:28px;max-height:28px;width:100%;object-fit:contain;margin:0}
+@media (pointer:coarse){.catalog-app .workshop-detail .thumbs .thumb{min-height:44px}}

@@ -474,3 +474,7 @@
 .catalog-app .workshop-detail .thumbs .thumb>div{height:28px;width:100%}
 .catalog-app .workshop-detail .thumbs .thumb img{height:28px;max-height:28px;width:100%;object-fit:contain;margin:0}
 @media (pointer:coarse){.catalog-app .workshop-detail .thumbs .thumb{min-height:44px}}
+
+/* Full customer catalog links retain both catalog tabs and normal browsing filters. */
+.catalog-app.shared-mode.full-catalog-share .catalog-nav{display:flex!important}
+.catalog-app.shared-mode.full-catalog-share .filters{display:flex!important}

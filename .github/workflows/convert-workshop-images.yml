@@ -1,0 +1,30 @@
+name: Convert workshop images to WebP
+on:
+  push:
+    branches: [stem-images-webp]
+    paths:
+      - '.github/workflows/convert-workshop-images.yml'
+      - 'space-workshops/tools/convert_images.py'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  convert:
+    if: github.ref == 'refs/heads/stem-images-webp'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install Pillow==12.1.1
+      - run: python space-workshops/tools/convert_images.py
+      - name: Commit verified WebP copies
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add space-workshops/images
+          if ! git diff --cached --quiet; then
+            git commit -m "Convert workshop PNG files to verified WebP and inventory placeholders"
+            git push origin HEAD:stem-images-webp
+          fi

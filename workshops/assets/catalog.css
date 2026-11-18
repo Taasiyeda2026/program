@@ -478,3 +478,66 @@
 /* Full customer catalog links retain both catalog tabs and normal browsing filters. */
 .catalog-app.shared-mode.full-catalog-share .catalog-nav{display:flex!important}
 .catalog-app.shared-mode.full-catalog-share .filters{display:flex!important}
+
+/* Phone catalog only: compact age controls, centered hero/gallery and a clear footer. */
+@media screen and (max-width:700px){
+  #catalogRoot.catalog-app .hero .hero-copy{width:100%;max-width:none;text-align:center;align-items:center}
+  #catalogRoot.catalog-app .hero h1,#catalogRoot.catalog-app .hero .hero-intro{width:100%;max-width:none;margin-inline:auto;text-align:center}
+  #catalogRoot.catalog-app .hero .eyebrow{text-align:center}
+
+  #catalogRoot.catalog-app .filters,#catalogRoot.catalog-app.space-theme .filters{
+    width:fit-content;max-width:100%;margin:0 auto 8px;padding:0;gap:0;
+    justify-content:center;background:none;border:0;box-shadow:none
+  }
+  #catalogRoot.catalog-app .filters .filter-select,
+  #catalogRoot.catalog-app .filters .search-box,
+  #catalogRoot.catalog-app .filters .text-button{display:none}
+  #catalogRoot.catalog-app .filters .age-filter{
+    width:min(280px,calc(100vw - 48px));max-width:100%;padding:3px;gap:3px;
+    justify-content:center;border-radius:11px
+  }
+  #catalogRoot.catalog-app .filters .age-filter button{
+    flex:1 1 0;min-width:0;min-height:34px;padding:4px 5px;font-size:12px;line-height:1.3
+  }
+
+  #catalogRoot.catalog-app .workshop-detail{
+    width:calc(100% - 20px);max-width:calc(100% - 20px);
+    max-height:calc(100dvh - 24px);margin:auto
+  }
+  #catalogRoot.catalog-app .workshop-detail>.dialog-scroll{max-height:calc(100dvh - 28px)}
+  #catalogRoot.catalog-app .workshop-detail .dialog-grid{grid-template-columns:minmax(0,1fr);gap:10px}
+  #catalogRoot.catalog-app .workshop-detail .visual-panel{width:100%;min-width:0;justify-self:center}
+  #catalogRoot.catalog-app .workshop-detail .gallery-main{
+    width:min(100%,300px);height:auto;aspect-ratio:1.25;max-height:none;
+    margin-inline:auto;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr)
+  }
+  #catalogRoot.catalog-app .workshop-detail .gallery-main img{
+    width:100%;height:100%;max-height:100%;min-width:0;min-height:0;object-fit:contain
+  }
+  #catalogRoot.catalog-app .workshop-detail .thumbs{justify-content:center}
+  #catalogRoot.catalog-app .workshop-detail .age-selector{
+    width:min(260px,100%);margin:0 auto 9px;padding:3px;gap:3px;border-radius:11px
+  }
+  #catalogRoot.catalog-app .workshop-detail .age-selector button{
+    min-height:34px;padding:4px 5px;line-height:1.3;font-size:12px
+  }
+  #catalogRoot.catalog-app .workshop-detail .age-selector button[aria-pressed=true]{padding:3px 4px}
+
+  #catalogRoot.catalog-app .back-top{
+    width:40px;height:40px;inset-inline-end:10px;
+    bottom:calc(16px + env(safe-area-inset-bottom,0px))
+  }
+  #catalogRoot.catalog-app:has(.selection-bar:not([hidden])) .back-top{
+    bottom:calc(155px + env(safe-area-inset-bottom,0px))
+  }
+  #catalogRoot.catalog-app>.footer .wrap{
+    width:calc(100% - 24px);box-sizing:border-box;padding-inline-end:48px
+  }
+  #catalogRoot.catalog-app>.footer .marketing-footer-line{
+    max-width:100%;justify-content:center;row-gap:2px
+  }
+  #catalogRoot.catalog-app>.footer .marketing-footer-line a{overflow-wrap:anywhere;white-space:normal}
+  #catalogRoot.catalog-app:has(.selection-bar:not([hidden]))>.footer{
+    padding-bottom:calc(145px + env(safe-area-inset-bottom,0px))
+  }
+}

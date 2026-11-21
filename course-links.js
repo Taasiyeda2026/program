@@ -43,6 +43,20 @@
         label: { he: 'אתר הקורס', ar: 'موقع الدورة' },
         href: 'https://portzot-derech.org/',
         primary: true
+      },
+      {
+        label: { he: 'שאלון פתיחה', ar: 'استبيان تمهيدي' },
+        href: 'https://portzot-derech.org/start/quiz.html?lang=he',
+        hrefAr: 'https://portzot-derech.org/start/quiz.html?lang=ar'
+      },
+      {
+        label: { he: 'תחומי החקר', ar: 'مجالات البحث' },
+        href: 'https://portzot-derech.org/domains/alldomains.html?lang=he',
+        hrefAr: 'https://portzot-derech.org/domains/alldomains.html?lang=ar'
+      },
+      {
+        label: { he: 'פרסונה', ar: 'الشخصية المستهدفة' },
+        href: 'https://portzot-derech.org/steps/persona.html'
       }
     ]
   };

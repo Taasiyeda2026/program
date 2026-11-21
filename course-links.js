@@ -23,11 +23,11 @@
         href: 'https://taasiyeda2026.github.io/spin-off/poster.html'
       },
       {
-        label: { he: 'דף ספינאוף' },
+        label: { he: 'דף ספינאוף', ar: 'صفحة الابتكار المنبثق' },
         href: 'https://taasiyeda2026.github.io/spin-off/spinoff.html'
       },
       {
-        label: { he: 'פרזנטציה' },
+        label: { he: 'פרזנטציה', ar: 'العرض التقديمي' },
         href: 'https://taasiyeda2026.github.io/spin-off/presentation.html'
       }
     ],

@@ -36,6 +36,30 @@
         label: { he: 'אתר הקורס', ar: 'موقع الدورة' },
         href: 'https://taasiyeda2026.github.io/Premium/',
         primary: true
+      },
+      {
+        label: { he: 'בעיה' },
+        href: 'https://taasiyeda2026.github.io/Premium/premium%20web/news/allnews.html'
+      },
+      {
+        label: { he: 'אתגר' },
+        href: 'https://taasiyeda2026.github.io/Premium/premium%20web/newsletter4.html'
+      },
+      {
+        label: { he: 'רעיונות' },
+        href: 'https://taasiyeda2026.github.io/Premium/premium%20web/newsletter5.html'
+      },
+      {
+        label: { he: 'אפיון' },
+        href: 'https://taasiyeda2026.github.io/Premium/premium%20web/newsletter6.html'
+      },
+      {
+        label: { he: 'קהל יעד' },
+        href: 'https://taasiyeda2026.github.io/Premium/premium%20web/newsletter8.html'
+      },
+      {
+        label: { he: 'אב-טיפוס' },
+        href: 'https://taasiyeda2026.github.io/Premium/premium%20web/newsletter9.html'
       }
     ],
     portzot: [
@@ -63,6 +87,9 @@
 
   function renderActivities() {
     const language = document.documentElement.lang === 'ar' ? 'ar' : 'he';
+    document.querySelectorAll('.course-description').forEach(description => {
+      description.textContent = description.getAttribute('data-description-' + language);
+    });
 
     document.querySelectorAll('.courses .course').forEach(card => {
       const nav = card.querySelector('nav.links');

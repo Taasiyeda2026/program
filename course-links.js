@@ -38,27 +38,27 @@
         primary: true
       },
       {
-        label: { he: 'בעיה' },
+        label: { he: 'בעיה', ar: 'المشكلة' },
         href: 'https://taasiyeda2026.github.io/Premium/premium%20web/news/allnews.html'
       },
       {
-        label: { he: 'אתגר' },
+        label: { he: 'אתגר', ar: 'التحدّي' },
         href: 'https://taasiyeda2026.github.io/Premium/premium%20web/newsletter4.html'
       },
       {
-        label: { he: 'רעיונות' },
+        label: { he: 'רעיונות', ar: 'الأفكار' },
         href: 'https://taasiyeda2026.github.io/Premium/premium%20web/newsletter5.html'
       },
       {
-        label: { he: 'אפיון' },
+        label: { he: 'אפיון', ar: 'توصيف المنتج' },
         href: 'https://taasiyeda2026.github.io/Premium/premium%20web/newsletter6.html'
       },
       {
-        label: { he: 'קהל יעד' },
+        label: { he: 'קהל יעד', ar: 'الفئة المستهدفة' },
         href: 'https://taasiyeda2026.github.io/Premium/premium%20web/newsletter8.html'
       },
       {
-        label: { he: 'אב-טיפוס' },
+        label: { he: 'אב-טיפוס', ar: 'النموذج الأوّلي' },
         href: 'https://taasiyeda2026.github.io/Premium/premium%20web/newsletter9.html'
       }
     ],
